@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import COLORS from "../../common/colors";
-import { commonStyle } from "../../common/styles";
+import React, {Component} from 'react';
+import {Text, StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import COLORS from '../../common/colors';
+import {commonStyle} from '../../common/styles';
 import {
   GetOptimalHieght,
   GetOptimalWidth,
   scaledFontSize,
-} from "../../helpers/commonHelpers/helpers";
+} from '../../helpers/commonHelpers/helpers';
 
 export default class OptionsCard extends Component {
   render() {
@@ -22,8 +22,8 @@ export default class OptionsCard extends Component {
 const styles = StyleSheet.create({
   container: {
     width: GetOptimalWidth(150),
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: COLORS.WHITE,
     marginVertical: GetOptimalHieght(10),
     marginHorizontal: GetOptimalWidth(10),
@@ -34,11 +34,13 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: GetOptimalWidth(50),
     height: GetOptimalHieght(50),
-    resizeMode: "contain",
+    resizeMode: 'contain',
     marginBottom: GetOptimalHieght(10),
   },
   title: {
-    fontSize: scaledFontSize(12),
+    fontSize: scaledFontSize(14),
     color: COLORS.BLACK,
+    width: GetOptimalWidth(120),
+    textAlign:"center"
   },
 });

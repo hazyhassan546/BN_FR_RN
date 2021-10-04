@@ -44,7 +44,7 @@ export default class Favorites extends Component {
             this.props.navigation.goBack();
           }}
           gotoHome={() => {
-            this.props.navigation.navigate("Home");
+            this.props.navigation.navigate("Favorite");
           }}
         />
         <View style={styles.container}>

@@ -15,3 +15,10 @@ export function getTrendingNamesApi() {
     url: ENUMS.baseURL + ENUMS.trendingNames,
   }).then((response) => response.data);
 }
+
+export function getWorldTrendingNamesApi() {
+  return API({
+    method: "GET",
+    url: ENUMS.baseURL + ENUMS.worldTrendingNames,
+  }).then((response) => response.data);
+}

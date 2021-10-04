@@ -1,51 +1,55 @@
-import React, { Component } from "react";
-import { Text, StyleSheet, View, ImageBackground } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
-import images from "../../common/images";
-import BackHeader from "../../components/backHeader";
-import ReligionCard from "../../components/cards/religionCard";
-import GenderOptions from "../../components/genderOptions";
-import HomeHeader from "../../components/homeHeader";
+import React, {Component} from 'react';
+import {Text, StyleSheet, View, ImageBackground} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
+import images from '../../common/images';
+import BackHeader from '../../components/backHeader';
+import ReligionCard from '../../components/cards/religionCard';
+import GenderOptions from '../../components/genderOptions';
+import HomeHeader from '../../components/homeHeader';
 const data = [
   {
-    title: "Muslims names",
+    title: 'Muslims names',
     image: images.muslim,
-    value: "Islam",
+    value: 'Islam',
   },
   {
-    title: "Christian names",
+    title: 'Christian names',
     image: images.christian,
-    value: "Christianity",
+    value: 'Christianity',
   },
   {
     title: "Hindu's names",
     image: images.hindu,
-    value: "Hinduism",
+    value: 'Hinduism',
   },
   {
-    title: "Sikhism names",
+    title: 'Sikhism names',
     image: images.sikh,
-    value: "Sikh",
+    value: 'Sikh',
   },
   {
-    title: "Jewish names",
+    title: 'Jewish names',
     image: images.jews,
-    value: "Jewish",
+    value: 'Jewish',
   },
 ];
 export default class ByReligion extends Component {
-  GetNames = (religion) => {
+  GetNames = religion => {
     let data = {
-      keyword: "",
+      keyword: '',
       religion: religion,
       gender: this.props?.namesData?.gender,
-      alphabet: "",
+      origin: '',
+      alphabet: '',
     };
     this.props.setReligion(religion);
     this.props.setLoading(true);
-    this.props.setKeyword("");
-    this.props.getNames(data);
-    this.props.navigation.navigate("NameListing", { data: "By Religion" });
+    this.props.setKeyword('');
+    this.props.setOrigin('');
+    setTimeout(() => {
+      this.props.getNames(data);
+      this.props.navigation.navigate('NameListing', {data: 'By Religion'});
+    }, 500);
   };
 
   render() {
@@ -53,25 +57,24 @@ export default class ByReligion extends Component {
       <ImageBackground
         source={images.home}
         style={{
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
         }}
-        resizeMode="cover"
-      >
+        resizeMode="cover">
         <BackHeader
-          title={"Search Religious"}
+          title={'Search Religious'}
           onBackPress={() => {
             this.props.navigation.goBack();
           }}
           gotoHome={() => {
-            this.props.navigation.navigate("Home");
+            this.props.navigation.navigate('Favorite');
           }}
         />
 
         <FlatList
           data={data}
-          keyExtractor={(item) => item.title}
-          renderItem={({ item }) => {
+          keyExtractor={item => item.title}
+          renderItem={({item}) => {
             return (
               <ReligionCard
                 title={item.title}

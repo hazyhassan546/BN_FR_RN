@@ -60,8 +60,8 @@ export default class Trending extends Component {
           alignItems: 'center',
         }}>
         <Image source={images.missing} style={styles.imageStyle} />
-        <Text>{'Sorry! your searched names does not exist'}</Text>
-        <Text style={styles.textDesc}>{'Try with another name'}</Text>
+        <Text>{'Nothing Found'}</Text>
+        <Text style={styles.textDesc}>{'Please check your internet'}</Text>
       </View>
     );
   };
@@ -85,10 +85,10 @@ export default class Trending extends Component {
             this.props.navigation.goBack();
           }}
           gotoHome={() => {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Favorite');
           }}
         />
-        {this.props?.namesData?.loading === true ? (
+        {this.props?.namesData?.T_loading === true ? (
           <View
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <ActivityIndicator size="large" color={COLORS.BLACK} />

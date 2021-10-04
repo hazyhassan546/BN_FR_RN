@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Text, StyleSheet, View, TextInput, Keyboard } from "react-native";
-import COLORS from "../common/colors";
-import { commonStyle } from "../common/styles";
+import React, {Component} from 'react';
+import {Text, StyleSheet, View, TextInput, Keyboard} from 'react-native';
+import COLORS from '../common/colors';
+import {commonStyle} from '../common/styles';
 import {
   GetOptimalHieght,
   GetOptimalWidth,
-} from "../helpers/commonHelpers/helpers";
-import { Icon } from "react-native-elements";
+} from '../helpers/commonHelpers/helpers';
+import {Icon} from 'react-native-elements';
 
 export default class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      textValue: "",
+      textValue: '',
     };
   }
 
@@ -21,11 +21,12 @@ export default class SearchBar extends Component {
       keyword: this.props?.namesData?.keyword,
       religion: this.props?.namesData?.religion,
       gender: this.props?.namesData?.gender,
-      alphabet: "",
+      alphabet: '',
+      origin: this.props?.namesData?.origin,
     };
     this.props.getNames(data);
-    this.props.navigation.navigate("NameListing", {
-      data: "By Keyword",
+    this.props.navigation.navigate('NameListing', {
+      data: 'By Keyword',
     });
     Keyboard.dismiss();
   };
@@ -36,9 +37,9 @@ export default class SearchBar extends Component {
         <TextInput
           style={styles.inputStyle}
           value={this.props?.namesData?.keyword}
-          placeholder={"Search Your Name"}
+          placeholder={'Search Your Name'}
           placeholderTextColor={COLORS.BLACK}
-          onChangeText={(text) => {
+          onChangeText={text => {
             this.props.setKeyword(text);
           }}
           onSubmitEditing={this.submitForm}
@@ -56,20 +57,23 @@ export default class SearchBar extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: GetOptimalWidth(190),
-    height: GetOptimalHieght(32),
+    width: GetOptimalWidth(320),
+    height: GetOptimalHieght(38),
     backgroundColor: COLORS.WHITE,
-    marginLeft: 10,
+    marginTop: GetOptimalHieght(30),
     ...commonStyle.elevatedShadow,
     borderRadius: GetOptimalWidth(5),
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: GetOptimalWidth(10),
   },
   inputStyle: {
-    width: GetOptimalWidth(150),
+    width: GetOptimalWidth(250),
     height: GetOptimalHieght(32),
     backgroundColor: COLORS.WHITE,
     borderRadius: GetOptimalWidth(5),
     paddingLeft: GetOptimalWidth(10),
+    fontSize: 16,
   },
 });

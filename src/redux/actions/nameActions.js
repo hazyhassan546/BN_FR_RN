@@ -21,6 +21,10 @@ import {
   SET_DETAIL_ITEM,
   ADD_TO_FAVORITE,
   REMOVE_FROM_FAVORITE,
+  SET_ORIGIN,
+  GET_WORLD_TRENDING_NAMES,
+  GET_WORLD_TRENDING_NAMES_SUCCESS,
+  GET_WORLD_TRENDING_NAMES_ERROR,
 } from "../types/types";
 
 export const nameActionCreator = {
@@ -30,6 +34,12 @@ export const nameActionCreator = {
   getTrendingNames: createAction(GET_TRENDING_NAMES),
   getTrendingNamesSuccess: createAction(GET_TRENDING_NAMES_SUCCESS),
   getTrendingNamesError: createAction(GET_TRENDING_NAMES_ERROR),
+
+
+  getWorldTrendingNames: createAction(GET_WORLD_TRENDING_NAMES),
+  getWorldTrendingNamesSuccess: createAction(GET_WORLD_TRENDING_NAMES_SUCCESS),
+  getWorldTrendingNamesError: createAction(GET_WORLD_TRENDING_NAMES_ERROR),
+
 
   getRelatedNames: createAction(GET_RELATED_NAMES),
   getRelatedNamesSuccess: createAction(GET_RELATED_NAMES_SUCCESS),
@@ -45,6 +55,7 @@ export const nameActionCreator = {
   setReligion: createAction(SET_RELIGION),
   clearReligion: createAction(CLEAR_RELIGION),
   setAlphabet: createAction(SET_ALPHABET),
+  setOrigin:createAction(SET_ORIGIN),
 
   /////
   setLoading: createAction(SET_LOADING),

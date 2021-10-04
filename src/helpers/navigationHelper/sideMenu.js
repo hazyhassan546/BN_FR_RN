@@ -56,7 +56,7 @@ export default class SideMenu extends Component {
   }
 
   changeTab = (tab) => {
-    Tabs = this.state.tabs;
+    let Tabs = this.state.tabs;
     Tabs.map((item, index) => {
       if (index == tab.id) {
         item.selected = true;
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: COLORS.SIDE_MENU_TEXT,
-    fontSize: scaledFontSize(14),
+    fontSize: scaledFontSize(16),
   },
   socialImagesArea: {
     flexDirection: "row",

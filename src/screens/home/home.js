@@ -1,24 +1,36 @@
 import React, {Component} from 'react';
+import {Text} from 'react-native';
+import {Image} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {SectionList} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import {View, FlatList, ImageBackground, Alert} from 'react-native';
+import COLORS from '../../common/colors';
 import images from '../../common/images';
+import NameListCard from '../../components/cards/nameListCard';
 import OptionsCard from '../../components/cards/optionsCard';
 import GenderOptions from '../../components/genderOptions';
 import HomeHeader from '../../components/homeHeader';
+import OriginPicker from '../../components/models/originPicker';
 import ValuePickerModal from '../../components/models/valuePickerModal';
 import SearchBar from '../../components/searchBar';
-import {GetOptimalHieght} from '../../helpers/commonHelpers/helpers';
+import {
+  GetOptimalHieght,
+  GetOptimalWidth,
+  scaledFontSize,
+} from '../../helpers/commonHelpers/helpers';
 
 const typesData = [
   {
-    title: 'Name of boys',
+    title: 'Boy Names',
     image: images.boy,
   },
   {
-    title: 'Name of girls',
+    title: 'Girl Names',
     image: images.girl,
   },
   {
-    title: 'Name of both',
+    title: 'Name of Both',
     image: images.both,
   },
   {
@@ -32,7 +44,7 @@ const typesData = [
   {
     title: 'Trending names',
     image: images.trend,
-  },
+  }
 ];
 export default class Home extends Component {
   GetNames = () => {
@@ -41,6 +53,7 @@ export default class Home extends Component {
       religion: this.props?.namesData?.religion,
       gender: this.props?.namesData?.gender,
       alphabet: this.props?.namesData?.alphabet,
+      origin: this.props?.namesData?.origin,
     };
     this.props.getNames(data);
   };
@@ -49,9 +62,13 @@ export default class Home extends Component {
     this.props.getTrendingNames();
   };
 
+  UNSAFE_componentWillMount() {
+    this.props.getWorldTrendingNames();
+  }
+
   selectOption = option => {
     switch (option.title) {
-      case 'Name of boys':
+      case 'Boy Names':
         this.props.setGender({
           value: 'Boy',
           id: 0,
@@ -65,7 +82,7 @@ export default class Home extends Component {
 
         this.props.navigation.navigate('NameListing', {data: option.title});
         break;
-      case 'Name of girls':
+      case 'Girl Names':
         this.props.setGender({
           value: 'Girl',
           id: 1,
@@ -78,7 +95,7 @@ export default class Home extends Component {
         }, 500);
         this.props.navigation.navigate('NameListing', {data: option.title});
         break;
-      case 'Name of both':
+      case 'Name of Both':
         this.props.setGender({
           value: '',
           id: 2,
@@ -103,6 +120,7 @@ export default class Home extends Component {
       case 'Search Religious':
         this.props.setKeyword('');
         this.props.setAlphabet('');
+        this.props.setOrigin('');
         this.props.setLoading(true);
         setTimeout(() => {
           this.GetNames();
@@ -112,15 +130,32 @@ export default class Home extends Component {
       case 'Trending names':
         this.props.setKeyword('');
         this.props.setAlphabet('');
+        this.props.setOrigin('');
         this.props.setLoading(true);
         setTimeout(() => {
           this.getTrendingNames();
         }, 500);
         this.props.navigation.navigate('Trending');
         break;
+      case 'My Favorites':
+        this.props.navigation.navigate('Favorite');
       default:
         break;
     }
+  };
+
+  ListEmptyComponent = () => {
+    return (
+      <View
+        style={{
+          height: GetOptimalHieght(400),
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>{'We are looking for World Trending Names'}</Text>
+        <Text style={styles.textDesc}>{'We are sorry for inconvenience.'}</Text>
+      </View>
+    );
   };
 
   render() {
@@ -163,15 +198,21 @@ export default class Home extends Component {
                     this.props.navigation.navigate('ByReligion');
                   }}
                 />
-                <SearchBar {...this.props} />
+                <OriginPicker
+                  {...this.props}
+                  onPress={() => {
+                    // this.props.navigation.navigate('ByReligion');
+                  }}
+                />
               </View>
+              <SearchBar {...this.props} />
             </View>
           }
           keyExtractor={item => item.title}
           data={typesData}
           contentContainerStyle={{
-            flex: 1,
             alignItems: 'center',
+            paddingBottom: GetOptimalHieght(100),
           }}
           showsVerticalScrollIndicator={false}
           numColumns={2}
@@ -183,8 +224,79 @@ export default class Home extends Component {
               />
             );
           }}
+          ListFooterComponent={
+            <View
+              style={{
+                marginTop: 50,
+              }}>
+              {this.props?.namesData?.WT_loading === true ? (
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIndicator size="large" color={COLORS.BLACK} />
+                </View>
+              ) : (
+                <SectionList
+                  scrollEnabled={false}
+                  sections={this.props?.namesData?.worldTrendingNamesList}
+                  keyExtractor={(item, index) => item + index}
+                  showsVerticalScrollIndicator={false}
+                  ListEmptyComponent={this.ListEmptyComponent}
+                  renderItem={({item, index}) => {
+                    const fav = this.props?.namesData?.favorites?.filter(
+                      x => x.id == item?.id,
+                    );
+                    return (
+                      <NameListCard
+                        fav={fav?.length > 0 ? true : false}
+                        item={item}
+                        index={index}
+                        addToFav={() => {
+                          this.props.addToFav(item);
+                        }}
+                        gotoDetails={() => {
+                          this.props.setDetailItem(item);
+                          setTimeout(() => {
+                            this.props.navigation.navigate('NameDetails');
+                          }, 200);
+                        }}
+                      />
+                    );
+                  }}
+                  renderSectionHeader={({section: {title}}) => (
+                    <View style={styles.headerBox}>
+                      <Text style={styles.header}>{title.toUpperCase()}</Text>
+                    </View>
+                  )}
+                />
+              )}
+            </View>
+          }
         />
       </ImageBackground>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  textDesc: {
+    fontSize: 14,
+    color: COLORS.APP_BLUE,
+  },
+  headerBox: {
+    fontSize: scaledFontSize(14),
+    backgroundColor: COLORS.APP_BLUE,
+    justifyContent: 'center',
+    marginBottom: GetOptimalHieght(10),
+    paddingVertical: GetOptimalHieght(20),
+    paddingHorizontal: GetOptimalWidth(40),
+    marginTop:GetOptimalHieght(50),
+  },
+  header: {
+    fontSize: scaledFontSize(14),
+    color: COLORS.WHITE,
+  },
+});

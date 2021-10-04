@@ -42,7 +42,13 @@ export default class BackHeader extends Component {
             onPress={this.props.gotoHome}
             style={[styles.buttonStyle, { position: "absolute", right: 25 }]}
           >
-            <Image source={images.babyImage} style={styles.imageStyle} />
+            {/* <Image source={images.babyImage} style={styles.imageStyle} /> */}
+            <Icon
+              name="hearto"
+              type="antdesign"
+              size={20}
+              color={COLORS.WHITE}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -65,9 +71,9 @@ const styles = StyleSheet.create({
     height: GetOptimalHieght(40),
   },
   buttonStyle: {
-    width: GetOptimalHieght(50),
-    height: GetOptimalHieght(50),
-    backgroundColor: COLORS.WHITE,
+    width: GetOptimalHieght(30),
+    height: GetOptimalHieght(30),
+    backgroundColor: COLORS.REDISH,
     borderRadius: GetOptimalHieght(40),
     justifyContent: "center",
     alignItems: "center",
@@ -91,6 +97,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: COLORS.WHITE,
-    fontSize: scaledFontSize(18),
+    fontSize: scaledFontSize(20),
+    fontWeight:"500"
   },
 });

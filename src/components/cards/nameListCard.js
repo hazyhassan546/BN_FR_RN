@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Text, StyleSheet, View, TouchableOpacity, Share } from "react-native";
-import COLORS from "../../common/colors";
-import { commonStyle } from "../../common/styles";
-import Toast from "react-native-toast-message";
+import React, {Component} from 'react';
+import {Text, StyleSheet, View, TouchableOpacity, Share} from 'react-native';
+import COLORS from '../../common/colors';
+import {commonStyle} from '../../common/styles';
+import Toast from 'react-native-toast-message';
 import {
   GetOptimalHieght,
   GetOptimalWidth,
   scaledFontSize,
-} from "../../helpers/commonHelpers/helpers";
-import { Icon } from "react-native-elements";
-import Clipboard from "@react-native-community/clipboard";
+} from '../../helpers/commonHelpers/helpers';
+import {Icon} from 'react-native-elements';
+import Clipboard from '@react-native-community/clipboard';
 
 export default class NameListCard extends Component {
-  onShare = async (message) => {
+  onShare = async message => {
     try {
       const result = await Share.share({
         message: message,
@@ -32,24 +32,24 @@ export default class NameListCard extends Component {
   };
 
   getReligion = () => {
-    const { item, index } = this.props;
+    const {item, index} = this.props;
     if (item.cat_numaric == 3) {
-      return <Text style={styles.desc}>{"Muslim"}</Text>;
-    } else if (item.cat_numaric == 2 && item.urdu_name == "Hindi") {
-      return <Text style={styles.desc}>{"Hindu"}</Text>;
-    } else if (item.urdu_name == "Sikh") {
-      return <Text style={styles.desc}>{"Sikh"}</Text>;
+      return <Text style={styles.desc}>{'Muslim'}</Text>;
+    } else if (item.cat_numaric == 2 && item.urdu_name == 'Hindi') {
+      return <Text style={styles.desc}>{'Hindu'}</Text>;
+    } else if (item.urdu_name == 'Sikh') {
+      return <Text style={styles.desc}>{'Sikh'}</Text>;
     } else if (item.origen_id == 20) {
-      return <Text style={styles.desc}>{"Christian"}</Text>;
-    } else if (item.urdu_name == "hebrew") {
-      return <Text style={styles.desc}>{"Jewish"}</Text>;
+      return <Text style={styles.desc}>{'Christian'}</Text>;
+    } else if (item.urdu_name == 'hebrew') {
+      return <Text style={styles.desc}>{'Jewish'}</Text>;
     } else {
-      return <Text style={styles.desc}>{""}</Text>;
+      return <Text style={styles.desc}>{''}</Text>;
     }
   };
 
   render() {
-    const { item, index } = this.props;
+    const {item, index} = this.props;
     let fav = this.props.fav;
     return (
       <View
@@ -58,17 +58,15 @@ export default class NameListCard extends Component {
           {
             backgroundColor: index % 2 === 0 ? COLORS.SKY_BLUE : COLORS.WHITE,
           },
-        ]}
-      >
+        ]}>
         <View style={styles.nameArea}>
           <Text style={styles.title}>{item.name}</Text>
           <TouchableOpacity
             style={[
               styles.button,
-              { backgroundColor: fav ? COLORS.PINKISH : COLORS.WHITE },
+              {backgroundColor: fav ? COLORS.PINKISH : COLORS.WHITE},
             ]}
-            onPress={this.props.addToFav}
-          >
+            onPress={this.props.addToFav}>
             <Icon
               name="hearto"
               type="antdesign"
@@ -80,10 +78,9 @@ export default class NameListCard extends Component {
             style={styles.button}
             onPress={() =>
               this.onShare(
-                "Name: " + item?.name + "   Meaning: " + item?.meaning
+                'Name: ' + item?.name + '   Meaning: ' + item?.meaning,
               )
-            }
-          >
+            }>
             <Icon
               name="share"
               type="SimpleLineIcons"
@@ -95,15 +92,14 @@ export default class NameListCard extends Component {
             style={styles.button}
             onPress={() => {
               Clipboard.setString(
-                "Name: " + item.name + "   Meaning: " + item.meaning
+                'Name: ' + item.name + '   Meaning: ' + item.meaning,
               );
               Toast.show({
-                type: "success",
-                text1: "Name is copied to clipboard",
-                text2: "Name: " + item.name + "   Meaning: " + item.meaning,
+                type: 'success',
+                text1: 'Name is copied to clipboard',
+                text2: 'Name: ' + item.name + '   Meaning: ' + item.meaning,
               });
-            }}
-          >
+            }}>
             <Icon
               name="copy"
               type="feather"
@@ -118,7 +114,7 @@ export default class NameListCard extends Component {
         </Text>
         {this.getReligion()}
         <TouchableOpacity onPress={this.props.gotoDetails}>
-          <Text style={styles.link}>{"(See More...)"}</Text>
+          <Text style={styles.link}>{'(See More...)'}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -131,27 +127,29 @@ const styles = StyleSheet.create({
     ...commonStyle.elevatedShadow,
   },
   title: {
-    fontSize: scaledFontSize(20),
+    fontSize: scaledFontSize(22),
     width: GetOptimalWidth(220),
     color: COLORS.BLACK,
   },
   desc: {
-    fontSize: scaledFontSize(13),
+    fontSize: scaledFontSize(15),
     width: GetOptimalWidth(260),
     color: COLORS.BLACK,
+    marginBottom: 5,
   },
   link: {
-    color: "#1592E6",
+    color: '#1592E6',
+    fontSize: scaledFontSize(13),
   },
   nameArea: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: GetOptimalHieght(20),
   },
   button: {
     width: GetOptimalHieght(30),
     height: GetOptimalHieght(30),
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: COLORS.WHITE,
     ...commonStyle.elevatedShadow,
     borderRadius: GetOptimalHieght(20),

@@ -1,142 +1,138 @@
-import React, { Component } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  FlatList,
-  ImageBackground,
-} from "react-native";
-import COLORS from "../../common/colors";
-import images from "../../common/images";
-import BackHeader from "../../components/backHeader";
-import AlphabetCard from "../../components/cards/alphabetCard";
-import GenderOptions from "../../components/genderOptions";
-import HomeHeader from "../../components/homeHeader";
-import ValuePickerModal from "../../components/models/valuePickerModal";
-import SearchBar from "../../components/searchBar";
+import React, {Component} from 'react';
+import {Text, StyleSheet, View, FlatList, ImageBackground} from 'react-native';
+import COLORS from '../../common/colors';
+import images from '../../common/images';
+import BackHeader from '../../components/backHeader';
+import AlphabetCard from '../../components/cards/alphabetCard';
+import GenderOptions from '../../components/genderOptions';
+import HomeHeader from '../../components/homeHeader';
+import OriginPicker from '../../components/models/originPicker';
+import ValuePickerModal from '../../components/models/valuePickerModal';
+import SearchBar from '../../components/searchBar';
 import {
   GetOptimalHieght,
   GetOptimalWidth,
-} from "../../helpers/commonHelpers/helpers";
+} from '../../helpers/commonHelpers/helpers';
 
 const Alphabets = [
   {
-    key: "A",
+    key: 'A',
     color: COLORS.REDISH,
   },
   {
-    key: "B",
+    key: 'B',
     color: COLORS.PINKISH,
   },
   {
-    key: "C",
+    key: 'C',
     color: COLORS.LIGHT_BLUE,
   },
   {
-    key: "D",
+    key: 'D',
     color: COLORS.SIDE_MENU_TEXT,
   },
   {
-    key: "E",
+    key: 'E',
     color: COLORS.REDISH,
   },
   {
-    key: "F",
+    key: 'F',
     color: COLORS.PINKISH,
   },
   {
-    key: "G",
+    key: 'G',
     color: COLORS.LIGHT_BLUE,
   },
   {
-    key: "H",
+    key: 'H',
     color: COLORS.SIDE_MENU_TEXT,
   },
   {
-    key: "I",
+    key: 'I',
     color: COLORS.REDISH,
   },
   {
-    key: "J",
+    key: 'J',
     color: COLORS.PINKISH,
   },
   {
-    key: "K",
+    key: 'K',
     color: COLORS.LIGHT_BLUE,
   },
   {
-    key: "L",
+    key: 'L',
     color: COLORS.SIDE_MENU_TEXT,
   },
   {
-    key: "M",
+    key: 'M',
     color: COLORS.REDISH,
   },
   {
-    key: "N",
+    key: 'N',
     color: COLORS.PINKISH,
   },
   {
-    key: "O",
+    key: 'O',
     color: COLORS.LIGHT_BLUE,
   },
   {
-    key: "P",
+    key: 'P',
     color: COLORS.SIDE_MENU_TEXT,
   },
   {
-    key: "Q",
+    key: 'Q',
     color: COLORS.REDISH,
   },
   {
-    key: "R",
+    key: 'R',
     color: COLORS.PINKISH,
   },
   {
-    key: "S",
+    key: 'S',
     color: COLORS.LIGHT_BLUE,
   },
   {
-    key: "T",
+    key: 'T',
     color: COLORS.SIDE_MENU_TEXT,
   },
   {
-    key: "U",
+    key: 'U',
     color: COLORS.REDISH,
   },
   {
-    key: "V",
+    key: 'V',
     color: COLORS.PINKISH,
   },
   {
-    key: "W",
+    key: 'W',
     color: COLORS.LIGHT_BLUE,
   },
   {
-    key: "X",
+    key: 'X',
     color: COLORS.SIDE_MENU_TEXT,
   },
   {
-    key: "Y",
+    key: 'Y',
     color: COLORS.REDISH,
   },
   {
-    key: "Z",
+    key: 'Z',
     color: COLORS.PINKISH,
   },
 ];
 
 export default class ByAlphabets extends Component {
-  GetNames = (alphabet) => {
+  GetNames = alphabet => {
     let data = {
-      keyword: "",
+      keyword: '',
       religion: this.props?.namesData?.religion,
       gender: this.props?.namesData?.gender,
+      origin:this.props?.namesData?.origin,
       alphabet: alphabet,
     };
     this.props.setLoading(true);
     this.props.getNames(data);
-    this.props.navigation.navigate("NameListing", { data: "By Alphabet" });
+    this.props.navigation.navigate('NameListing', {data: 'By Alphabet'});
   };
 
   render() {
@@ -144,29 +140,28 @@ export default class ByAlphabets extends Component {
       <ImageBackground
         source={images.home}
         style={{
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
         }}
-        resizeMode="cover"
-      >
+        resizeMode="cover">
         <BackHeader
-          title={"Search Alphabetic"}
+          title={'Search Alphabetic'}
           onBackPress={() => {
             this.props.navigation.goBack();
           }}
           gotoHome={() => {
-            this.props.navigation.navigate("Home");
+            this.props.navigation.navigate('Favorite');
           }}
         />
         <FlatList
-          keyExtractor={(item) => item.key}
+          keyExtractor={item => item.key}
           data={Alphabets}
           contentContainerStyle={{
             paddingHorizontal: GetOptimalWidth(35),
           }}
           showsVerticalScrollIndicator={false}
           numColumns={3}
-          renderItem={({ item }) => {
+          renderItem={({item}) => {
             return (
               <AlphabetCard
                 keyword={item.key}
@@ -178,20 +173,25 @@ export default class ByAlphabets extends Component {
           ListHeaderComponent={
             <View
               style={{
-                alignItems: "center",
+                alignItems: 'center',
                 marginBottom: GetOptimalHieght(30),
-              }}
-            >
+              }}>
               <GenderOptions {...this.props} />
-              <View style={{ flexDirection: "row" }}>
+              <View style={{flexDirection: 'row'}}>
                 <ValuePickerModal
                   {...this.props}
                   onPress={() => {
-                    this.props.navigation.navigate("ByReligion");
+                    this.props.navigation.navigate('ByReligion');
                   }}
                 />
-                <SearchBar {...this.props} />
+                <OriginPicker
+                  {...this.props}
+                  onPress={() => {
+                    // this.props.navigation.navigate('ByReligion');
+                  }}
+                />
               </View>
+              <SearchBar {...this.props} />
             </View>
           }
         />

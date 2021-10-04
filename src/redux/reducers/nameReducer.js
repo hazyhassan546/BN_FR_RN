@@ -1,4 +1,4 @@
-import Toast from "react-native-toast-message";
+import Toast from 'react-native-toast-message';
 import {
   CLEAR_GENDER,
   CLEAR_KEYWORD,
@@ -21,26 +21,34 @@ import {
   SET_DETAIL_ITEM,
   ADD_TO_FAVORITE,
   REMOVE_FROM_FAVORITE,
-} from "../types/types";
+  SET_ORIGIN,
+  GET_WORLD_TRENDING_NAMES_ERROR,
+  GET_WORLD_TRENDING_NAMES_SUCCESS,
+  GET_WORLD_TRENDING_NAMES,
+} from '../types/types';
 
 const defaultState = {
   namesList: [],
   trendingNamesList: [],
+  worldTrendingNamesList: [],
   relatedNamesList: [],
   favorites: [],
   detailItem: {},
   getNameSuccess: false,
   getNameError: false,
-  error: "",
-  gender: "male",
+  error: '',
+  gender: 'male',
   genderIndex: 0,
-  religion: "",
-  keyword: "",
-  alphabet: "",
+  religion: '',
+  keyword: '',
+  alphabet: '',
+  origin: '',
   loading: false,
+  T_loading: false,
+  WT_loading: false,
 };
 export default function nameReducer(state = defaultState, action = {}) {
-  const { type, payload } = action;
+  const {type, payload} = action;
   switch (type) {
     case GET_NAMES:
       return {
@@ -48,7 +56,7 @@ export default function nameReducer(state = defaultState, action = {}) {
         loading: true,
         getNameSuccess: false,
         getNameError: false,
-        error: "",
+        error: '',
       };
     case GET_NAMES_SUCCESS:
       return {
@@ -56,7 +64,7 @@ export default function nameReducer(state = defaultState, action = {}) {
         loading: false,
         getNameSuccess: true,
         getNameError: false,
-        error: "",
+        error: '',
         namesList: payload,
       };
     case GET_NAMES_ERROR:
@@ -74,7 +82,7 @@ export default function nameReducer(state = defaultState, action = {}) {
         loading: true,
         getNameSuccess: false,
         getNameError: false,
-        error: "",
+        error: '',
       };
     case GET_RELATED_NAMES_SUCCESS:
       return {
@@ -82,7 +90,7 @@ export default function nameReducer(state = defaultState, action = {}) {
         loading: false,
         getNameSuccess: true,
         getNameError: false,
-        error: "",
+        error: '',
         relatedNamesList: payload,
       };
     case GET_RELATED_NAMES_ERROR:
@@ -102,24 +110,50 @@ export default function nameReducer(state = defaultState, action = {}) {
     case GET_TRENDING_NAMES:
       return {
         ...state,
-        loading: true,
+        T_loading: true,
         getNameSuccess: false,
         getNameError: false,
-        error: "",
+        error: '',
       };
     case GET_TRENDING_NAMES_SUCCESS:
       return {
         ...state,
-        loading: false,
+        T_loading: false,
         getNameSuccess: true,
         getNameError: false,
-        error: "",
+        error: '',
         trendingNamesList: payload,
       };
     case GET_TRENDING_NAMES_ERROR:
       return {
         ...state,
-        loading: false,
+        T_loading: false,
+        getNameSuccess: false,
+        getNameError: true,
+        error: payload,
+      };
+
+    case GET_WORLD_TRENDING_NAMES:
+      return {
+        ...state,
+        WT_loading: true,
+        getNameSuccess: false,
+        getNameError: false,
+        error: '',
+      };
+    case GET_WORLD_TRENDING_NAMES_SUCCESS:
+      return {
+        ...state,
+        WT_loading: false,
+        getNameSuccess: true,
+        getNameError: false,
+        error: '',
+        worldTrendingNamesList: payload,
+      };
+    case GET_WORLD_TRENDING_NAMES_ERROR:
+      return {
+        ...state,
+        WT_loading: false,
         getNameSuccess: false,
         getNameError: true,
         error: payload,
@@ -133,7 +167,7 @@ export default function nameReducer(state = defaultState, action = {}) {
     case CLEAR_GENDER:
       return {
         ...state,
-        gender: "", // incase of both option
+        gender: '', // incase of both option
       };
     case SET_RELIGION:
       return {
@@ -143,7 +177,7 @@ export default function nameReducer(state = defaultState, action = {}) {
     case CLEAR_RELIGION:
       return {
         ...state,
-        religion: "",
+        religion: '',
       };
     case SET_KEYWORD:
       return {
@@ -153,7 +187,7 @@ export default function nameReducer(state = defaultState, action = {}) {
     case CLEAR_KEYWORD:
       return {
         ...state,
-        keyword: "",
+        keyword: '',
       };
     case SET_ALPHABET:
       return {
@@ -173,6 +207,10 @@ export default function nameReducer(state = defaultState, action = {}) {
     case ADD_TO_FAVORITE:
       if (state.favorites.includes(payload)) {
         // remove part
+        Toast.show({
+          type: 'info',
+          text1: payload.name + ' is  removed from favorites. ',
+        });
         return {
           ...state,
           favorites: state.favorites.filter(function (value, index, arr) {
@@ -180,25 +218,35 @@ export default function nameReducer(state = defaultState, action = {}) {
           }),
         };
       } else {
+        Toast.show({
+          type: 'success',
+          text1: payload.name + ' is successfully added to favorites. ',
+        });
         // add  part
         return {
           ...state,
           favorites: [payload, ...state.favorites],
         };
       }
-      return {
-        ...state,
-        favorites:
-          state?.favorites?.indexOf(payload) > -1
-            ? state.favorites.filter(function (value, index, arr) {
-                return value !== payload;
-              })
-            : [payload, ...state.favorites],
-      };
+    // return {
+    //   ...state,
+    //   favorites:
+    //     state?.favorites?.indexOf(payload) > -1
+    //       ? state.favorites.filter(function (value, index, arr) {
+    //           return value !== payload;
+    //         })
+    //       : [payload, ...state.favorites],
+    // };
     case REMOVE_FROM_FAVORITE:
       return {
         ...state,
       };
+    case SET_ORIGIN: {
+      return {
+        ...state,
+        origin: payload,
+      };
+    }
     default:
       return state;
   }
