@@ -10,6 +10,7 @@ import {Icon} from 'react-native-elements';
 import images from '../../common/images';
 import Modal from 'react-native-modal';
 import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
+import { ScrollView } from 'react-native';
 const data = [
   'None',
   'Arabic',
@@ -59,7 +60,13 @@ export default function OriginPicker(props) {
         </View>
       }
       onRequestClose={() => setVisible(false)}>
-      {data.map((item, index) => {
+        <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{
+          height:400,
+        }}
+        >
+        {data.map((item, index) => {
         return (
           <MenuItem
             key={index}
@@ -69,6 +76,7 @@ export default function OriginPicker(props) {
           </MenuItem>
         );
       })}
+        </ScrollView>
     </Menu>
   );
 }
