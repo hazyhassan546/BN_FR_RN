@@ -228,6 +228,7 @@ export default class Home extends Component {
             <View
               style={{
                 marginTop: 50,
+                flex:1,
               }}>
               {this.props?.namesData?.WT_loading === true ? (
                 <View

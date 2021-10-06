@@ -56,11 +56,12 @@ export default class NameListCard extends Component {
         style={[
           styles.item,
           {
-            backgroundColor: index % 2 === 0 ? COLORS.SKY_BLUE : COLORS.WHITE,
+            //backgroundColor: index % 2 === 0 ? COLORS.SKY_BLUE : COLORS.WHITE,
+            backgroundColor:COLORS.WHITE,
           },
         ]}>
         <View style={styles.nameArea}>
-          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.title}>{item.name.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim()}</Text>
           <TouchableOpacity
             style={[
               styles.button,
@@ -78,7 +79,7 @@ export default class NameListCard extends Component {
             style={styles.button}
             onPress={() =>
               this.onShare(
-                'Name: ' + item?.name + '   Meaning: ' + item?.meaning,
+                'Name: ' + item?.name + '   Meaning: ' + item?.meaning?.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ', ').trim(),
               )
             }>
             <Icon
@@ -92,12 +93,12 @@ export default class NameListCard extends Component {
             style={styles.button}
             onPress={() => {
               Clipboard.setString(
-                'Name: ' + item.name + '   Meaning: ' + item.meaning,
+                'Name: ' + item.name + '   Meaning: ' + item.meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ', ').trim(),
               );
               Toast.show({
                 type: 'success',
                 text1: 'Name is copied to clipboard',
-                text2: 'Name: ' + item.name + '   Meaning: ' + item.meaning,
+                text2: 'Name: ' + item.name + '   Meaning: ' + item.meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ', ').trim(),
               });
             }}>
             <Icon
@@ -110,7 +111,7 @@ export default class NameListCard extends Component {
         </View>
 
         <Text numberOfLines={2} style={styles.desc}>
-          {item.meaning}
+          {item.meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ' ').trim()}
         </Text>
         {this.getReligion()}
         <TouchableOpacity onPress={this.props.gotoDetails}>

@@ -22,6 +22,7 @@ export default class OptionsCard extends Component {
 const styles = StyleSheet.create({
   container: {
     width: GetOptimalWidth(150),
+    height:GetOptimalHieght(120),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.WHITE,
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     ...commonStyle.elevatedShadow,
   },
   imageStyle: {
-    width: GetOptimalWidth(50),
+    width: GetOptimalWidth(130),
     height: GetOptimalHieght(50),
     resizeMode: 'contain',
     marginBottom: GetOptimalHieght(10),

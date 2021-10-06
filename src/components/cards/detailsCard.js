@@ -78,7 +78,7 @@ export default class DetailsCard extends Component {
             {meaning && (
               <View style={styles.bottomArea}>
                 <Text style={styles.title}>{'Meaning'}</Text>
-                <Text style={styles.desc2}>{meaning}</Text>
+                <Text style={styles.desc2}>{meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ' ').trim()}</Text>
               </View>
             )}
 
@@ -136,7 +136,7 @@ export default class DetailsCard extends Component {
             style={styles.button}
             onPress={() =>
               this.onShare(
-                'Name: ' + data?.name + '   Meaning: ' + data?.meaning,
+                'Name: ' + data?.name + '   Meaning: ' + data?.meaning.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim(),
               )
             }>
             <Icon
@@ -150,12 +150,12 @@ export default class DetailsCard extends Component {
             style={styles.button}
             onPress={() => {
               Clipboard.setString(
-                'Name: ' + data?.name + '   Meaning: ' + data?.meaning,
+                'Name: ' + data?.name.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim() + '   Meaning: ' + data?.meaning.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim(),
               );
               Toast.show({
                 type: 'success',
                 text1: 'Name is copied to clipboard',
-                text2: 'Name: ' + data?.name + '   Meaning: ' + data?.meaning,
+                text2: 'Name: ' + data?.name.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim() + '   Meaning: ' + data?.meaning.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim(),
               });
             }}>
             <Icon
