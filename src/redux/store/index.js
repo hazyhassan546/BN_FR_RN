@@ -13,7 +13,7 @@ import sagas from '../sagas';
 export const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['searchData'],
+  whitelist: ['namesData'],
 };
 
 const sagaMiddleware = createSagaMiddleware();
