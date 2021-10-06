@@ -24,7 +24,7 @@ export default class HomeHeader extends Component {
         message:
           Platform.OS === "ios"
             ? "https://apps.apple.com"
-            : "https://play.google.com",
+            : "https://play.google.com/store/apps/details?id=com.babynameapp_rn",
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {

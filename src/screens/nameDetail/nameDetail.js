@@ -142,9 +142,9 @@ export default class NameDetails extends Component {
             ListFooterComponent={() => {
               return (
                 <View>
-                  <Text style={{...styles.link, ...styles.seeMore}}>
-                    Top 5 Trending Names
-                  </Text>
+                  <View style={styles.link}>
+                      <Text style={styles.seeMore}>Top 5 Trending Names</Text>
+                    </View>
 
                   {this.props?.namesData?.T_loading === true ? (
                     <View
@@ -214,13 +214,19 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   seeMore: {
-    paddingVertical: GetOptimalHieght(20),
-    paddingHorizontal: GetOptimalWidth(40),
-    marginTop: GetOptimalHieght(40),
-    backgroundColor: COLORS.APP_BLUE,
+    fontSize: scaledFontSize(18),
+    color: COLORS.WHITE,
+
   },
   link: {
-    color: COLORS.WHITE,
-    fontSize: scaledFontSize(16),
+    marginHorizontal:GetOptimalWidth(10),
+    fontSize: scaledFontSize(14),
+    backgroundColor: COLORS.APP_BLUE,
+    justifyContent: 'center',
+    marginBottom: GetOptimalHieght(10),
+    paddingVertical: GetOptimalHieght(20),
+    paddingHorizontal: GetOptimalWidth(40),
+    marginTop:GetOptimalHieght(50),
+    borderRadius:GetOptimalWidth(10)
   },
 });

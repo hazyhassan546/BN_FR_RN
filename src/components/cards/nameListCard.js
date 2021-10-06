@@ -56,8 +56,8 @@ export default class NameListCard extends Component {
         style={[
           styles.item,
           {
-            //backgroundColor: index % 2 === 0 ? COLORS.SKY_BLUE : COLORS.WHITE,
-            backgroundColor:COLORS.WHITE,
+            backgroundColor: index % 2 === 0 ? COLORS.SKY_BLUE : COLORS.WHITE,
+           // backgroundColor:COLORS.WHITE,
           },
         ]}>
         <View style={styles.nameArea}>
@@ -125,22 +125,24 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: COLORS.SKY_BLUE,
     padding: GetOptimalHieght(20),
+    margin:GetOptimalHieght(15),
+    borderRadius:GetOptimalHieght(20),
     ...commonStyle.elevatedShadow,
   },
   title: {
-    fontSize: scaledFontSize(22),
-    width: GetOptimalWidth(220),
+    fontSize: scaledFontSize(25),
+    width: GetOptimalWidth(180),
     color: COLORS.BLACK,
   },
   desc: {
-    fontSize: scaledFontSize(15),
+    fontSize: scaledFontSize(18),
     width: GetOptimalWidth(260),
     color: COLORS.BLACK,
     marginBottom: 5,
   },
   link: {
     color: '#1592E6',
-    fontSize: scaledFontSize(13),
+    fontSize: scaledFontSize(16),
   },
   nameArea: {
     flexDirection: 'row',

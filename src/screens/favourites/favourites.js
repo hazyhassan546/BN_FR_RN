@@ -32,6 +32,7 @@ export default class Favorites extends Component {
     this.setState({
       title: "My Favorites",
     });
+    this.props.visitedAllNames();
   }
 
   render() {

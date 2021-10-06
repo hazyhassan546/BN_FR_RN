@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   desc: {
     marginBottom: GetOptimalHieght(30),
-    fontSize: scaledFontSize(30),
+    fontSize: scaledFontSize(32),
     //color: '#5AC5CB',
     color: '#454748',
     fontWeight: 'bold',
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   },
   desc2: {
     marginBottom: GetOptimalHieght(10),
-    fontSize: scaledFontSize(16),
+    fontSize: scaledFontSize(18),
     color: '#454748',
     fontWeight: 'normal',
     borderColor: 'black',
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: COLORS.BLACK,
-    fontSize: scaledFontSize(16),
+    fontSize: scaledFontSize(18),
   },
   bottomArea: {
     flex: 1,

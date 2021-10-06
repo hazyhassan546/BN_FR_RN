@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   title: {
-    fontSize: scaledFontSize(14),
+    fontSize: scaledFontSize(18),
     fontWeight: "bold",
   },
 });

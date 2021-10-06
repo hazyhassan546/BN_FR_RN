@@ -83,19 +83,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: GetOptimalWidth(20),
   },
   headingStyle: {
-    fontSize: scaledFontSize(18),
+    fontSize: scaledFontSize(22),
     fontWeight: "bold",
     paddingVertical: GetOptimalHieght(20),
     color: COLORS.BLACK,
   },
   description: {
-    fontSize: scaledFontSize(14),
+    fontSize: scaledFontSize(18),
     paddingBottom: GetOptimalHieght(20),
     color: COLORS.BLACK,
     textAlign: "justify",
   },
   details: {
-    fontSize: scaledFontSize(14),
+    fontSize: scaledFontSize(18),
     color: COLORS.WHITE,
     fontWeight:"bold",
     textAlign: "justify",

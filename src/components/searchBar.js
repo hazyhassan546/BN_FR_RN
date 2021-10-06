@@ -5,6 +5,7 @@ import {commonStyle} from '../common/styles';
 import {
   GetOptimalHieght,
   GetOptimalWidth,
+  scaledFontSize,
 } from '../helpers/commonHelpers/helpers';
 import {Icon} from 'react-native-elements';
 
@@ -74,6 +75,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
     borderRadius: GetOptimalWidth(5),
     paddingLeft: GetOptimalWidth(10),
-    fontSize: 16,
+    fontSize: scaledFontSize(18),
   },
 });

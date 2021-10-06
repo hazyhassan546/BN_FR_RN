@@ -24,8 +24,12 @@ const slide1 = require("../assets/slide1.png");
 const slide2 = require("../assets/slide2.png");
 const slide3 = require("../assets/slide3.png");
 const missing = require("../assets/missing.png");
+const newName=require("../assets/newName.gif");
+const newNameNormal=require("../assets/newNameNormal.png");
 
 export default Images = {
+  newNameNormal,
+  newName,
   home,
   down,
   trend,

@@ -22,7 +22,7 @@ export default class OptionsCard extends Component {
 const styles = StyleSheet.create({
   container: {
     width: GetOptimalWidth(150),
-    height:GetOptimalHieght(120),
+    height:GetOptimalHieght(130),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.WHITE,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginBottom: GetOptimalHieght(10),
   },
   title: {
-    fontSize: scaledFontSize(14),
+    fontSize: scaledFontSize(16),
     color: COLORS.BLACK,
     width: GetOptimalWidth(120),
     textAlign:"center"

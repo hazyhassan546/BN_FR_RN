@@ -42,7 +42,7 @@ const typesData = [
     image: images.book,
   },
   {
-    title: 'Trending names',
+    title: 'Trending Names',
     image: images.trend,
   }
 ];
@@ -127,7 +127,7 @@ export default class Home extends Component {
         }, 500);
         this.props.navigation.navigate('ByReligion');
         break;
-      case 'Trending names':
+      case 'Trending Names':
         this.props.setKeyword('');
         this.props.setAlphabet('');
         this.props.setOrigin('');
@@ -295,9 +295,12 @@ const styles = StyleSheet.create({
     paddingVertical: GetOptimalHieght(20),
     paddingHorizontal: GetOptimalWidth(40),
     marginTop:GetOptimalHieght(50),
+    borderRadius:GetOptimalWidth(10),
+    width:"95%",
+    alignSelf:"center"
   },
   header: {
-    fontSize: scaledFontSize(14),
+    fontSize: scaledFontSize(18),
     color: COLORS.WHITE,
   },
 });

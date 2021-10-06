@@ -25,6 +25,7 @@ import {
   GET_WORLD_TRENDING_NAMES,
   GET_WORLD_TRENDING_NAMES_SUCCESS,
   GET_WORLD_TRENDING_NAMES_ERROR,
+  VISITED_ALL_NAMES,
 } from "../types/types";
 
 export const nameActionCreator = {
@@ -62,4 +63,6 @@ export const nameActionCreator = {
   /////
   addToFav: createAction(ADD_TO_FAVORITE),
   removeFromFav: createAction(REMOVE_FROM_FAVORITE),
+
+  visitedAllNames:createAction(VISITED_ALL_NAMES)
 };

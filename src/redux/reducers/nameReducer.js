@@ -25,6 +25,7 @@ import {
   GET_WORLD_TRENDING_NAMES_ERROR,
   GET_WORLD_TRENDING_NAMES_SUCCESS,
   GET_WORLD_TRENDING_NAMES,
+  VISITED_ALL_NAMES
 } from '../types/types';
 
 const defaultState = {
@@ -46,6 +47,7 @@ const defaultState = {
   loading: false,
   T_loading: false,
   WT_loading: false,
+  newName:false,
 };
 export default function nameReducer(state = defaultState, action = {}) {
   const {type, payload} = action;
@@ -225,18 +227,16 @@ export default function nameReducer(state = defaultState, action = {}) {
         // add  part
         return {
           ...state,
+          newName:true,
           favorites: [payload, ...state.favorites],
         };
       }
-    // return {
-    //   ...state,
-    //   favorites:
-    //     state?.favorites?.indexOf(payload) > -1
-    //       ? state.favorites.filter(function (value, index, arr) {
-    //           return value !== payload;
-    //         })
-    //       : [payload, ...state.favorites],
-    // };
+    case VISITED_ALL_NAMES:{
+      return{
+        ...state,
+        newName:false,
+      }
+    }
     case REMOVE_FROM_FAVORITE:
       return {
         ...state,

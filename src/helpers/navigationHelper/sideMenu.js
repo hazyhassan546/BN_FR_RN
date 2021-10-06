@@ -137,6 +137,13 @@ export default class SideMenu extends Component {
             style={styles.imageWrap}>
               <Image source={images.instagram} style={styles.socialImages} />
             </TouchableOpacity>
+            <TouchableOpacity
+             onPress={() => {
+              Linking.openURL("https://www.instagram.com/");
+            }}
+            style={styles.imageWrap}>
+              <Image source={images.instagram} style={styles.socialImages} />
+            </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: COLORS.SIDE_MENU_TEXT,
-    fontSize: scaledFontSize(16),
+    fontSize: scaledFontSize(18),
   },
   socialImagesArea: {
     flexDirection: "row",
@@ -169,14 +176,14 @@ const styles = StyleSheet.create({
     //...commonStyle.elevatedShadow,
   },
   socialImages: {
-    width: GetOptimalHieght(25),
-    height: GetOptimalHieght(25),
+    width: GetOptimalHieght(30),
+    height: GetOptimalHieght(30),
     borderRadius: GetOptimalHieght(20),
     resizeMode: "contain",
   },
   imageTab: {
-    width: GetOptimalHieght(25),
-    height: GetOptimalHieght(25),
+    width: GetOptimalHieght(30),
+    height: GetOptimalHieght(30),
     marginRight: GetOptimalWidth(15),
   },
   imageContainer: {
