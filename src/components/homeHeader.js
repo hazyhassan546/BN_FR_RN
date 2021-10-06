@@ -46,7 +46,7 @@ export default class HomeHeader extends Component {
           onPress={this.props.openDrawer}
           style={[styles.touchableHide, { position: "absolute", left: 20 }]}
         >
-          <Icon name="menu" type="MaterialIcons" color={COLORS.WHITE} />
+          <Icon name="menu" type="MaterialIcons" color={COLORS.WHITE} size={35} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={this.props.gotoHome}

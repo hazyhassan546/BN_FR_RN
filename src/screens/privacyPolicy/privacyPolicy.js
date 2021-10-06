@@ -84,18 +84,21 @@ const styles = StyleSheet.create({
   },
   headingStyle: {
     fontSize: scaledFontSize(22),
+    fontFamily:"SEGOEUI",
     fontWeight: "bold",
     paddingVertical: GetOptimalHieght(20),
     color: COLORS.BLACK,
   },
   description: {
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
     paddingBottom: GetOptimalHieght(20),
     color: COLORS.BLACK,
     textAlign: "justify",
   },
   details: {
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
     color: COLORS.WHITE,
     fontWeight:"bold",
     textAlign: "justify",
@@ -109,6 +112,7 @@ const styles = StyleSheet.create({
   },
   headerBox: {
     fontSize: scaledFontSize(14),
+    fontFamily:"SEGOEUI",
     backgroundColor: COLORS.BLACK,
     width: GetOptimalHieght(25),
     height: GetOptimalHieght(25),
@@ -120,10 +124,12 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: scaledFontSize(14),
+    fontFamily:"SEGOEUI",
     color: COLORS.WHITE,
     fontWeight: "bold",
   },
   title: {
     fontSize: 24,
+    fontFamily:"SEGOEUI",
   },
 });

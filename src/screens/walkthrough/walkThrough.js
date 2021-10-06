@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
   },
   nextText: {
     fontSize: scaledFontSize(16),
+    fontFamily:"SEGOEUI",
     color: "#5AC5CB",
     fontWeight: "bold",
   },
@@ -139,12 +140,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: scaledFontSize(26),
+    fontFamily:"SEGOEUI",
     color: COLORS.WHITE,
     fontWeight: "bold",
     marginBottom: GetOptimalHieght(20),
   },
   desc: {
     fontSize: scaledFontSize(10),
+    fontFamily:"SEGOEUI",
     color: COLORS.WHITE,
     marginBottom: GetOptimalHieght(20),
     letterSpacing: 0.3,

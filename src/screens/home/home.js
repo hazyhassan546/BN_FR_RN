@@ -286,9 +286,11 @@ const styles = StyleSheet.create({
   textDesc: {
     fontSize: 14,
     color: COLORS.APP_BLUE,
+    fontFamily:"SEGOEUI",
   },
   headerBox: {
     fontSize: scaledFontSize(14),
+    fontFamily:"SEGOEUI",
     backgroundColor: COLORS.APP_BLUE,
     justifyContent: 'center',
     marginBottom: GetOptimalHieght(10),
@@ -301,6 +303,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
     color: COLORS.WHITE,
   },
 });

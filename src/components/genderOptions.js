@@ -95,5 +95,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: scaledFontSize(20),
     color: COLORS.BLACK,
+    fontFamily:"SEGOEUI",
   },
 });

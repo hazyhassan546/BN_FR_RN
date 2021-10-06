@@ -110,13 +110,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: GetOptimalWidth(10),
     marginVertical: GetOptimalHieght(10),
+    fontFamily:"SEGOEUI",
   },
   header: {
     fontSize: scaledFontSize(14),
     color: COLORS.WHITE,
     fontWeight: "bold",
+    fontFamily:"SEGOEUI",
   },
   title: {
     fontSize: 24,
+    fontFamily:"SEGOEUI",
   },
 });

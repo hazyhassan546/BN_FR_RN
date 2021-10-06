@@ -40,8 +40,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: scaledFontSize(16),
+    fontFamily:"SEGOEUI",
     color: COLORS.BLACK,
     width: GetOptimalWidth(120),
-    textAlign:"center"
+    textAlign:"center",
+    fontFamily:"SEGOEUI",
   },
 });

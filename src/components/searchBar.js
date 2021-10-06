@@ -76,5 +76,6 @@ const styles = StyleSheet.create({
     borderRadius: GetOptimalWidth(5),
     paddingLeft: GetOptimalWidth(10),
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
   },
 });

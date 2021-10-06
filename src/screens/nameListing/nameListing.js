@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
   },
   headerBox: {
     fontSize: scaledFontSize(14),
+    fontFamily:"SEGOEUI",
     backgroundColor: COLORS.BLACK,
     width: GetOptimalHieght(25),
     height: GetOptimalHieght(25),
@@ -158,14 +159,17 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: scaledFontSize(14),
+    fontFamily:"SEGOEUI",
     color: COLORS.WHITE,
     fontWeight: 'bold',
   },
   title: {
     fontSize: 24,
+    fontFamily:"SEGOEUI",
   },
   textDesc: {
     fontSize: 14,
+    fontFamily:"SEGOEUI",
     color: COLORS.APP_BLUE,
   },
   imageStyle: {

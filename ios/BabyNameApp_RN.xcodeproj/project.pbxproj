@@ -16,6 +16,7 @@
 		5869D6560844D57614121ECD /* libPods-BabyNameApp_RN-BabyNameApp_RNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5A339390FB36C600937F2A /* libPods-BabyNameApp_RN-BabyNameApp_RNTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B0DC44D32CFF7D35EC62E53B /* libPods-BabyNameApp_RN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0C325BF1463C7D0E079C23 /* libPods-BabyNameApp_RN.a */; };
+		C91CBE13AD404DA3B70E9714 /* SEGOEUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B37D7C9CCF64013B0D0F63D /* SEGOEUI.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		EC576075B80C4124A71E7F92 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F2CBFD620B8715EAE4FA939B /* Pods-BabyNameApp_RN-BabyNameApp_RNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyNameApp_RN-BabyNameApp_RNTests.debug.xcconfig"; path = "Target Support Files/Pods-BabyNameApp_RN-BabyNameApp_RNTests/Pods-BabyNameApp_RN-BabyNameApp_RNTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3B37D7C9CCF64013B0D0F63D /* SEGOEUI.ttf */ = {isa = PBXFileReference; name = "SEGOEUI.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SEGOEUI.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				19191A3730394B4E904C7EBC /* Octicons.ttf */,
 				74E9AF9F9FF4409A808B6957 /* SimpleLineIcons.ttf */,
 				AE40F1E039B74C69A825FFAF /* Zocial.ttf */,
+				3B37D7C9CCF64013B0D0F63D /* SEGOEUI.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				1D19E48526F1BF7400026187 /* Launch Screen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				C91CBE13AD404DA3B70E9714 /* SEGOEUI.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

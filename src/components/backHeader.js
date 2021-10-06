@@ -103,5 +103,6 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontSize: scaledFontSize(22),
     fontWeight: '500',
+    fontFamily:"SEGOEUI",
   },
 });

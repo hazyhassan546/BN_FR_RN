@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontWeight: "bold",
     fontSize: scaledFontSize(34),
+    fontFamily:"SEGOEUI",
   },
 });

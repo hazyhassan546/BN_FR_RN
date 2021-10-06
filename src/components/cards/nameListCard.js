@@ -133,16 +133,19 @@ const styles = StyleSheet.create({
     fontSize: scaledFontSize(25),
     width: GetOptimalWidth(180),
     color: COLORS.BLACK,
+    fontFamily:"SEGOEUI",
   },
   desc: {
     fontSize: scaledFontSize(18),
     width: GetOptimalWidth(260),
     color: COLORS.BLACK,
     marginBottom: 5,
+    fontFamily:"SEGOEUI",
   },
   link: {
     color: '#1592E6',
     fontSize: scaledFontSize(16),
+    fontFamily:"SEGOEUI",
   },
   nameArea: {
     flexDirection: 'row',

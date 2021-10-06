@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: scaledFontSize(18),
     fontWeight: "bold",
+    fontFamily:"SEGOEUI",
   },
 });

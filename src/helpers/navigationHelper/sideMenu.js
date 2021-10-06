@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
   tabText: {
     color: COLORS.SIDE_MENU_TEXT,
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
   },
   socialImagesArea: {
     flexDirection: "row",

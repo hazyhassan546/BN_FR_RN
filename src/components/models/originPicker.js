@@ -103,5 +103,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
   },
 });

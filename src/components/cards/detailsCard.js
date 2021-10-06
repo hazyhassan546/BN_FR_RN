@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
     marginBottom: GetOptimalHieght(0),
     width: GetOptimalWidth(120),
     fontSize: scaledFontSize(16),
+    fontFamily:"SEGOEUI",
     // color:"#454748",
     color: '#5AC5CB',
     fontWeight: '500',
@@ -191,6 +192,7 @@ const styles = StyleSheet.create({
   desc: {
     marginBottom: GetOptimalHieght(30),
     fontSize: scaledFontSize(32),
+    fontFamily:"SEGOEUI",
     //color: '#5AC5CB',
     color: '#454748',
     fontWeight: 'bold',
@@ -199,6 +201,7 @@ const styles = StyleSheet.create({
   desc2: {
     marginBottom: GetOptimalHieght(10),
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
     color: '#454748',
     fontWeight: 'normal',
     borderColor: 'black',
@@ -243,6 +246,7 @@ const styles = StyleSheet.create({
   link: {
     color: COLORS.BLACK,
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
   },
   bottomArea: {
     flex: 1,

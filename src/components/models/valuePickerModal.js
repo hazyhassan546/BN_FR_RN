@@ -78,8 +78,10 @@ const styles = StyleSheet.create({
   itemStyle: {
     width: GetOptimalHieght(225),
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
   },
   title: {
     fontSize: scaledFontSize(18),
+    fontFamily:"SEGOEUI",
   },
 });
