@@ -7,7 +7,6 @@ const alpha = Array.from(Array(26))?.map((e, i) => i + 65);
 var alphabet = alpha?.map((x) => {
   return { title: String.fromCharCode(x).toLowerCase(), data: [] };
 });
-//console.log(alphabet);
 
 function* getNameSaga({ payload }) {
   try {
@@ -25,7 +24,6 @@ function* getNameSaga({ payload }) {
       });
     }
 
-    // console.log(alphabet);
     const result = [];
     yield alphabet?.map((item, index) => {
       if (item?.data?.length > 0) {
@@ -55,7 +53,6 @@ function* getRelatedNameSaga({ payload }) {
       });
     }
 
-    // console.log(alphabet);
     const result = [];
     yield alphabet?.map((item, index) => {
       if (item?.data?.length > 0) {

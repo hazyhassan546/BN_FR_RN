@@ -25,7 +25,9 @@ import {
   GET_WORLD_TRENDING_NAMES_ERROR,
   GET_WORLD_TRENDING_NAMES_SUCCESS,
   GET_WORLD_TRENDING_NAMES,
-  VISITED_ALL_NAMES
+  VISITED_ALL_NAMES,
+  RESET,
+  SET_SEARCH_TYPE
 } from '../types/types';
 
 const defaultState = {
@@ -47,7 +49,8 @@ const defaultState = {
   loading: false,
   T_loading: false,
   WT_loading: false,
-  newName:false,
+  newName: false,
+  searchType:""
 };
 export default function nameReducer(state = defaultState, action = {}) {
   const {type, payload} = action;
@@ -175,6 +178,7 @@ export default function nameReducer(state = defaultState, action = {}) {
       return {
         ...state,
         religion: payload,
+        origin: '',
       };
     case CLEAR_RELIGION:
       return {
@@ -227,15 +231,15 @@ export default function nameReducer(state = defaultState, action = {}) {
         // add  part
         return {
           ...state,
-          newName:true,
+          newName: true,
           favorites: [payload, ...state.favorites],
         };
       }
-    case VISITED_ALL_NAMES:{
-      return{
+    case VISITED_ALL_NAMES: {
+      return {
         ...state,
-        newName:false,
-      }
+        newName: false,
+      };
     }
     case REMOVE_FROM_FAVORITE:
       return {
@@ -245,6 +249,37 @@ export default function nameReducer(state = defaultState, action = {}) {
       return {
         ...state,
         origin: payload,
+        religion: '',
+      };
+    }
+    case SET_SEARCH_TYPE: {
+      return {
+        ...state,
+        searchType: payload,
+      };
+    }
+    case RESET: {
+      return {
+        ...state,
+        namesList: [],
+        trendingNamesList: [],
+        worldTrendingNamesList: [],
+        relatedNamesList: [],
+        detailItem: {},
+        getNameSuccess: false,
+        getNameError: false,
+        error: '',
+        gender: 'male',
+        genderIndex: 0,
+        religion: '',
+        keyword: '',
+        alphabet: '',
+        origin: '',
+        loading: false,
+        T_loading: false,
+        WT_loading: false,
+        newName: false,
+        searchType:""
       };
     }
     default:

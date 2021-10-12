@@ -139,10 +139,10 @@ export default class SideMenu extends Component {
             </TouchableOpacity>
             <TouchableOpacity
              onPress={() => {
-              Linking.openURL("https://www.instagram.com/");
+              Linking.openURL("https://pin.it/3DFQ5IW");
             }}
             style={styles.imageWrap}>
-              <Image source={images.instagram} style={styles.socialImages} />
+              <Image source={images.pint} style={styles.socialImages} />
             </TouchableOpacity>
           </View>
         </View>

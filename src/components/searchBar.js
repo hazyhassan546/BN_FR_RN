@@ -26,6 +26,16 @@ export default class SearchBar extends Component {
       origin: this.props?.namesData?.origin,
     };
     this.props.getNames(data);
+    if (this.props?.namesData?.keyword !== '') {
+      // in case keyword is not empty set search type to name
+      this.props.setSearchType('Name');
+    } else if (this.props?.namesData?.origin !== '') {
+      this.props.setSearchType('Origin');
+    } else if (this.props?.namesData?.religion !== '') {
+      this.props.setSearchType('Religion');
+    } else {
+      this.props.setSearchType('');
+    }
     this.props.navigation.navigate('NameListing', {
       data: 'By Keyword',
     });
@@ -41,6 +51,9 @@ export default class SearchBar extends Component {
           placeholder={'Search Your Name'}
           placeholderTextColor={COLORS.BLACK}
           onChangeText={text => {
+            if (text == '') {
+              this.props.setSearchType('');
+            }
             this.props.setKeyword(text);
           }}
           onSubmitEditing={this.submitForm}
@@ -76,6 +89,6 @@ const styles = StyleSheet.create({
     borderRadius: GetOptimalWidth(5),
     paddingLeft: GetOptimalWidth(10),
     fontSize: scaledFontSize(18),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
 });

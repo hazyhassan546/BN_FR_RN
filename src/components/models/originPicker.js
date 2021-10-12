@@ -34,7 +34,6 @@ export default function OriginPicker(props) {
   const [visible, setVisible] = useState(false);
 
   const hideMenu = text => {
-    console.log(text);
     if (text == 'None') text = '';
     props.setOrigin(text);
     setVisible(false);
@@ -47,6 +46,7 @@ export default function OriginPicker(props) {
       anchor={
         <View>
           <TouchableOpacity
+            disabled={props?.namesData?.searchType == 'Religion' || props?.namesData?.searchType=="Name" ? true : false}
             onPress={() => {
               showMenu();
             }}

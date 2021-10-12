@@ -17,7 +17,6 @@ export default function ValuePickerModal(props) {
   const [visible, setVisible] = useState(false);
 
   const hideMenu = text => {
-    console.log(text);
     if (text == 'None') text = '';
     props.setReligion(text);
     setVisible(false);
@@ -30,6 +29,7 @@ export default function ValuePickerModal(props) {
       anchor={
         <View>
           <TouchableOpacity
+            disabled={props?.namesData?.searchType == 'Origin' || props?.namesData?.searchType=="Name" ? true : false}
             onPress={() => {
               showMenu();
             }}
@@ -64,11 +64,11 @@ const styles = StyleSheet.create({
     height: GetOptimalHieght(38),
     backgroundColor: COLORS.WHITE,
     borderRadius: GetOptimalWidth(5),
-    ...commonStyle.elevatedShadow,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     marginRight: GetOptimalWidth(15),
+    ...commonStyle.elevatedShadow,
   },
   downArrow: {
     width: GetOptimalHieght(15),
@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
   itemStyle: {
     width: GetOptimalHieght(225),
     fontSize: scaledFontSize(18),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
   title: {
     fontSize: scaledFontSize(18),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
 });

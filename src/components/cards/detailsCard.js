@@ -49,7 +49,6 @@ export default class DetailsCard extends Component {
 
   render() {
     const data = this.props.data;
-    console.log('Rashi', this.props.data);
     const {fav} = this?.props;
     const religion = this.getReligion();
     const name = data?.name ? data?.name : '';

@@ -56,14 +56,14 @@ export default class HomeHeader extends Component {
         </TouchableOpacity>
         <View style={[styles.buttonRow, { position: "absolute", right: 20 }]}>
           <TouchableOpacity onPress={this.props.like} style={styles.touchable}>
-            <Icon size={20} name="like1" type="antdesign" color="#517fa4" />
+            <Icon size={20} name="like1" type="antdesign" color={COLORS.APP_BLUE} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.onShare} style={styles.touchable}>
             <Icon
               size={20}
               name="share"
               type="SimpleLineIcons"
-              color="#517fa4"
+              color={COLORS.APP_BLUE}
             />
           </TouchableOpacity>
         </View>

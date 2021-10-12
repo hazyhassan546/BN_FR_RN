@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native';
 import {Image} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {SectionList} from 'react-native';
 import {ActivityIndicator} from 'react-native';
@@ -44,7 +45,7 @@ const typesData = [
   {
     title: 'Trending Names',
     image: images.trend,
-  }
+  },
 ];
 export default class Home extends Component {
   GetNames = () => {
@@ -63,7 +64,18 @@ export default class Home extends Component {
   };
 
   UNSAFE_componentWillMount() {
+    this.props.resetState();
     this.props.getWorldTrendingNames();
+    this.props.setSearchType('');
+
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.props.setSearchType('');
+    });
+  }
+
+
+  componentWillUnmount(){
+    this._unsubscribe();
   }
 
   selectOption = option => {
@@ -76,6 +88,7 @@ export default class Home extends Component {
         this.props.setKeyword('');
         this.props.setAlphabet('');
         this.props.setLoading(true);
+        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
@@ -90,6 +103,7 @@ export default class Home extends Component {
         this.props.setKeyword('');
         this.props.setAlphabet('');
         this.props.setLoading(true);
+        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
@@ -103,6 +117,7 @@ export default class Home extends Component {
         this.props.setKeyword('');
         this.props.setAlphabet('');
         this.props.setLoading(true);
+        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
@@ -112,6 +127,7 @@ export default class Home extends Component {
         this.props.setKeyword('');
         this.props.setAlphabet('');
         this.props.setLoading(true);
+        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
@@ -122,6 +138,7 @@ export default class Home extends Component {
         this.props.setAlphabet('');
         this.props.setOrigin('');
         this.props.setLoading(true);
+        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
@@ -132,6 +149,7 @@ export default class Home extends Component {
         this.props.setAlphabet('');
         this.props.setOrigin('');
         this.props.setLoading(true);
+        this.props.setSearchType('');
         setTimeout(() => {
           this.getTrendingNames();
         }, 500);
@@ -154,6 +172,12 @@ export default class Home extends Component {
         }}>
         <Text>{'We are looking for World Trending Names'}</Text>
         <Text style={styles.textDesc}>{'We are sorry for inconvenience.'}</Text>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.getWorldTrendingNames();
+          }}>
+          <Text style={styles.textDesc}>{'Try Again'}</Text>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -228,7 +252,7 @@ export default class Home extends Component {
             <View
               style={{
                 marginTop: 50,
-                flex:1,
+                flex: 1,
               }}>
               {this.props?.namesData?.WT_loading === true ? (
                 <View
@@ -286,24 +310,24 @@ const styles = StyleSheet.create({
   textDesc: {
     fontSize: 14,
     color: COLORS.APP_BLUE,
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
   headerBox: {
     fontSize: scaledFontSize(14),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     backgroundColor: COLORS.APP_BLUE,
     justifyContent: 'center',
     marginBottom: GetOptimalHieght(10),
     paddingVertical: GetOptimalHieght(20),
     paddingHorizontal: GetOptimalWidth(40),
-    marginTop:GetOptimalHieght(50),
-    borderRadius:GetOptimalWidth(10),
-    width:"95%",
-    alignSelf:"center"
+    marginTop: GetOptimalHieght(50),
+    borderRadius: GetOptimalWidth(10),
+    width: '95%',
+    alignSelf: 'center',
   },
   header: {
     fontSize: scaledFontSize(18),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     color: COLORS.WHITE,
   },
 });

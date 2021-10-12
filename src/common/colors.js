@@ -1,3 +1,29 @@
+//RELEASE 3
+// const COLORS = {
+//   WHITE: "#ffffff",
+//   BLACK: "#000000",
+//   APP_BLUE: "#37b44e",
+//   SIDE_MENU_TEXT: "#7E7E7E",
+//   REDISH: "#E46A6A",
+//   PINKISH: "#E49F9F",
+//   LIGHT_BLUE: "#2BAFF6",
+//   SKY_BLUE: "#BEFFCA",
+// };
+
+// RELEASE 2
+// const COLORS = {
+//   WHITE: "#ffffff",
+//   BLACK: "#000000",
+//   APP_BLUE: "#816D5E",
+//   SIDE_MENU_TEXT: "#7E7E7E",
+//   REDISH: "#E46A6A",
+//   PINKISH: "#E49F9F",
+//   LIGHT_BLUE: "#2BAFF6",
+//   SKY_BLUE: "#FAD8BF",
+// };
+
+//
+//RELEASE 1
 const COLORS = {
   WHITE: "#ffffff",
   BLACK: "#000000",

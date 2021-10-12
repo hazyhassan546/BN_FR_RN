@@ -1,4 +1,4 @@
-import { createAction } from "redux-actions";
+import {createAction} from 'redux-actions';
 import {
   CLEAR_GENDER,
   CLEAR_KEYWORD,
@@ -26,7 +26,9 @@ import {
   GET_WORLD_TRENDING_NAMES_SUCCESS,
   GET_WORLD_TRENDING_NAMES_ERROR,
   VISITED_ALL_NAMES,
-} from "../types/types";
+  RESET,
+  SET_SEARCH_TYPE,
+} from '../types/types';
 
 export const nameActionCreator = {
   getNames: createAction(GET_NAMES),
@@ -36,11 +38,9 @@ export const nameActionCreator = {
   getTrendingNamesSuccess: createAction(GET_TRENDING_NAMES_SUCCESS),
   getTrendingNamesError: createAction(GET_TRENDING_NAMES_ERROR),
 
-
   getWorldTrendingNames: createAction(GET_WORLD_TRENDING_NAMES),
   getWorldTrendingNamesSuccess: createAction(GET_WORLD_TRENDING_NAMES_SUCCESS),
   getWorldTrendingNamesError: createAction(GET_WORLD_TRENDING_NAMES_ERROR),
-
 
   getRelatedNames: createAction(GET_RELATED_NAMES),
   getRelatedNamesSuccess: createAction(GET_RELATED_NAMES_SUCCESS),
@@ -56,7 +56,7 @@ export const nameActionCreator = {
   setReligion: createAction(SET_RELIGION),
   clearReligion: createAction(CLEAR_RELIGION),
   setAlphabet: createAction(SET_ALPHABET),
-  setOrigin:createAction(SET_ORIGIN),
+  setOrigin: createAction(SET_ORIGIN),
 
   /////
   setLoading: createAction(SET_LOADING),
@@ -64,5 +64,8 @@ export const nameActionCreator = {
   addToFav: createAction(ADD_TO_FAVORITE),
   removeFromFav: createAction(REMOVE_FROM_FAVORITE),
 
-  visitedAllNames:createAction(VISITED_ALL_NAMES)
+  visitedAllNames: createAction(VISITED_ALL_NAMES),
+  resetState: createAction(RESET),
+
+  setSearchType: createAction(SET_SEARCH_TYPE),
 };

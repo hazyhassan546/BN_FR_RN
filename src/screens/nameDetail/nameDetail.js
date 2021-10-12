@@ -115,7 +115,7 @@ export default class NameDetails extends Component {
         }}
         resizeMode="cover">
         <BackHeader
-          title={this.props?.namesData?.detailItem?.name}
+          title={this.props?.namesData?.detailItem?.name.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim()}
           onBackPress={() => {
             this.props.navigation.goBack();
           }}
