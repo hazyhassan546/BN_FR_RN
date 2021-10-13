@@ -55,7 +55,7 @@ export default class DetailsCard extends Component {
     const aribic = data?.aribic ? data?.aribic : '-';
     const meaning = data?.meaning ? data?.meaning : '-';
     const gender = data?.gender ? data?.gender : '-';
-    const Pronunciation = data?.Pronunciation ? data?.Pronunciation : '-';
+    const Pronunciation = data?.Pronunciation ? data?.Pronunciation?.replace(/<\/?[^>]+(>|$)/g, "") : '-';
     const numbers = data?.numbers ? data?.numbers : '-';
     const orign = data?.orign ? data?.orign : '-';
     const Rashi = data?.Rashi ? data?.Rashi : '-';
