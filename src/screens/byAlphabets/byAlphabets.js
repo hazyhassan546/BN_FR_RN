@@ -125,12 +125,13 @@ export default class ByAlphabets extends Component {
   GetNames = alphabet => {
     let data = {
       keyword: '',
-      religion: this.props?.namesData?.religion,
+      religion: '',
       gender: this.props?.namesData?.gender,
-      origin:this.props?.namesData?.origin,
+      origin: '',
       alphabet: alphabet,
     };
     this.props.setLoading(true);
+    this.props.setAlphabet(alphabet);
     this.props.getNames(data);
     this.props.navigation.navigate('NameListing', {data: 'By Alphabet'});
   };
@@ -174,10 +175,10 @@ export default class ByAlphabets extends Component {
             <View
               style={{
                 alignItems: 'center',
-                marginBottom: GetOptimalHieght(30),
+                // marginBottom: GetOptimalHieght(30),
               }}>
               <GenderOptions {...this.props} />
-              <View style={{flexDirection: 'row'}}>
+              {/* <View style={{flexDirection: 'row'}}>
                 <ValuePickerModal
                   {...this.props}
                   onPress={() => {
@@ -191,7 +192,7 @@ export default class ByAlphabets extends Component {
                   }}
                 />
               </View>
-              <SearchBar {...this.props} />
+              <SearchBar {...this.props} /> */}
             </View>
           }
         />

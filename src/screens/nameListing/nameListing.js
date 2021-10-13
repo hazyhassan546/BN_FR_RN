@@ -14,6 +14,7 @@ import images from '../../common/images';
 import BackHeader from '../../components/backHeader';
 import NameListCard from '../../components/cards/nameListCard';
 import GenderOptions from '../../components/genderOptions';
+import AlphabetPickerModal from '../../components/models/alphabetPicker';
 import OriginPicker from '../../components/models/originPicker';
 import ValuePickerModal from '../../components/models/valuePickerModal';
 import SearchBar from '../../components/searchBar';
@@ -35,6 +36,23 @@ export default class NameListing extends Component {
       title: this.props.route.params.data,
     });
   }
+
+  setTitle = title => {
+    this.setState({
+      title: title,
+    });
+  };
+
+  GetNames = () => {
+    let data = {
+      keyword: this.props?.namesData?.keyword,
+      religion: this.props?.namesData?.religion,
+      gender: this.props?.namesData?.gender,
+      alphabet: this.props?.namesData?.alphabet,
+      origin: this.props?.namesData?.origin,
+    };
+    this.props.getNames(data);
+  };
 
   ListEmptyComponent = () => {
     return (
@@ -76,20 +94,27 @@ export default class NameListing extends Component {
           }}>
           <GenderOptions {...this.props} />
           <View style={{flexDirection: 'row'}}>
-            <ValuePickerModal
-              {...this.props}
-              onPress={() => {
-                //this.props.navigation.navigate('ByReligion');
-              }}
-            />
             <OriginPicker
               {...this.props}
-              onPress={() => {
-                // this.props.navigation.navigate('ByReligion');
+              onSelect={() => {
+                this.setTitle('By Origin');
+                this.GetNames();
+              }}
+            />
+            <AlphabetPickerModal
+              {...this.props}
+              onSelect={() => {
+                this.setTitle('By Alphabet');
+                this.GetNames();
               }}
             />
           </View>
-          <SearchBar {...this.props} />
+          <SearchBar
+            onSelect={() => {
+              this.setTitle('By Keyword');
+            }}
+            {...this.props}
+          />
         </View>
         {this.props?.namesData?.loading === true ? (
           <View
@@ -147,7 +172,7 @@ const styles = StyleSheet.create({
   },
   headerBox: {
     fontSize: scaledFontSize(14),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     backgroundColor: COLORS.BLACK,
     width: GetOptimalHieght(25),
     height: GetOptimalHieght(25),
@@ -159,17 +184,17 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: scaledFontSize(14),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     color: COLORS.WHITE,
     fontWeight: 'bold',
   },
   title: {
     fontSize: 24,
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
   textDesc: {
     fontSize: 14,
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     color: COLORS.APP_BLUE,
   },
   imageStyle: {

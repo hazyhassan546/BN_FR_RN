@@ -42,11 +42,11 @@ export default class ByReligion extends Component {
       origin: '',
       alphabet: '',
     };
-    this.props.setLoading(true);
-    this.props.setKeyword('');
-    this.props.setOrigin('');
-    this.props.setSearchType('Religion');
     this.props.setReligion(religion);
+    this.props.setLoading(true);
+    this.props.setOrigin('');
+    this.props.setKeyword('');
+    this.props.setAlphabet('');
     setTimeout(() => {
       this.props.getNames(data);
       this.props.navigation.navigate('NameListing', {data: 'By Religion'});

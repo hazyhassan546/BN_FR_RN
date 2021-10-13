@@ -11,7 +11,7 @@ import {Icon} from 'react-native-elements';
 import images from '../../common/images';
 import Modal from 'react-native-modal';
 import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
-import { ScrollView } from 'react-native';
+import {ScrollView} from 'react-native';
 const data = [
   'None',
   'Arabic',
@@ -34,9 +34,15 @@ export default function OriginPicker(props) {
   const [visible, setVisible] = useState(false);
 
   const hideMenu = text => {
-    if (text == 'None') text = '';
+    if (text == 'None') {
+      text = '';
+      props.setSearchType('');
+    }
     props.setOrigin(text);
     setVisible(false);
+    setTimeout(() => {
+      props.onSelect();
+    }, 500);
   };
 
   const showMenu = () => setVisible(true);
@@ -46,7 +52,6 @@ export default function OriginPicker(props) {
       anchor={
         <View>
           <TouchableOpacity
-            disabled={props?.namesData?.searchType == 'Religion' || props?.namesData?.searchType=="Name" ? true : false}
             onPress={() => {
               showMenu();
             }}
@@ -61,23 +66,22 @@ export default function OriginPicker(props) {
         </View>
       }
       onRequestClose={() => setVisible(false)}>
-        <ScrollView
+      <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
-          height:400,
-        }}
-        >
+          height: 400,
+        }}>
         {data.map((item, index) => {
-        return (
-          <MenuItem
-            key={index}
-            style={styles.itemStyle}
-            onPress={() => hideMenu(item)}>
-            {item}
-          </MenuItem>
-        );
-      })}
-        </ScrollView>
+          return (
+            <MenuItem
+              key={index}
+              style={styles.itemStyle}
+              onPress={() => hideMenu(item)}>
+              {item}
+            </MenuItem>
+          );
+        })}
+      </ScrollView>
     </Menu>
   );
 }
@@ -103,6 +107,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: scaledFontSize(18),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
 });

@@ -27,7 +27,7 @@ import {
   GET_WORLD_TRENDING_NAMES,
   VISITED_ALL_NAMES,
   RESET,
-  SET_SEARCH_TYPE
+  SET_SEARCH_TYPE,
 } from '../types/types';
 
 const defaultState = {
@@ -50,7 +50,7 @@ const defaultState = {
   T_loading: false,
   WT_loading: false,
   newName: false,
-  searchType:""
+  searchType: '',
 };
 export default function nameReducer(state = defaultState, action = {}) {
   const {type, payload} = action;
@@ -179,6 +179,8 @@ export default function nameReducer(state = defaultState, action = {}) {
         ...state,
         religion: payload,
         origin: '',
+        alphabet: '',
+        keyword: '',
       };
     case CLEAR_RELIGION:
       return {
@@ -189,6 +191,9 @@ export default function nameReducer(state = defaultState, action = {}) {
       return {
         ...state,
         keyword: payload,
+        origin: '',
+        religion: '',
+        alphabet: '',
       };
     case CLEAR_KEYWORD:
       return {
@@ -199,6 +204,9 @@ export default function nameReducer(state = defaultState, action = {}) {
       return {
         ...state,
         alphabet: payload,
+        origin: '',
+        religion: '',
+        keyword: '',
       };
     case SET_LOADING:
       return {
@@ -250,6 +258,8 @@ export default function nameReducer(state = defaultState, action = {}) {
         ...state,
         origin: payload,
         religion: '',
+        alphabet: '',
+        keyword: '',
       };
     }
     case SET_SEARCH_TYPE: {
@@ -279,7 +289,7 @@ export default function nameReducer(state = defaultState, action = {}) {
         T_loading: false,
         WT_loading: false,
         newName: false,
-        searchType:""
+        searchType: '',
       };
     }
     default:

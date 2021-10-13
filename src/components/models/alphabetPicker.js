@@ -11,9 +11,38 @@ import {Icon} from 'react-native-elements';
 import images from '../../common/images';
 import Modal from 'react-native-modal';
 import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
-const data = ['None', 'Islam', 'Hinduism', 'Jewish', 'Christianity', 'Sikh'];
+import {ScrollView} from 'react-native';
 
-export default function ValuePickerModal(props) {
+const alphabet = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',
+];
+
+export default function AlphabetPickerModal(props) {
   const [visible, setVisible] = useState(false);
 
   const hideMenu = text => {
@@ -21,8 +50,11 @@ export default function ValuePickerModal(props) {
       props.setSearchType('');
       text = '';
     }
-    props.setReligion(text);
+    props.setAlphabet(text);
     setVisible(false);
+    setTimeout(() => {
+      props.onSelect();
+    }, 500);
   };
 
   const showMenu = () => setVisible(true);
@@ -36,26 +68,34 @@ export default function ValuePickerModal(props) {
               showMenu();
             }}
             style={styles.container}>
-            {props?.namesData?.religion == '' ? (
-              <Text style={styles.title}>{'Religion'}</Text>
+            {props?.namesData?.alphabet == '' ? (
+              <Text style={styles.title}>{'Alphabets'}</Text>
             ) : (
-              <Text style={styles.title}>{props?.namesData?.religion}</Text>
+              <Text style={styles.title}>
+                {props?.namesData?.alphabet?.toUpperCase()}
+              </Text>
             )}
             <Image source={images.down} style={styles.downArrow} />
           </TouchableOpacity>
         </View>
       }
       onRequestClose={() => setVisible(false)}>
-      {data.map((item, index) => {
-        return (
-          <MenuItem
-            key={index}
-            style={styles.itemStyle}
-            onPress={() => hideMenu(item)}>
-            {item}
-          </MenuItem>
-        );
-      })}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{
+          height: 400,
+        }}>
+        {alphabet.map((item, index) => {
+          return (
+            <MenuItem
+              key={index}
+              style={styles.itemStyle}
+              onPress={() => hideMenu(item)}>
+              {item.toUpperCase()}
+            </MenuItem>
+          );
+        })}
+      </ScrollView>
     </Menu>
   );
 }
@@ -69,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginRight: GetOptimalWidth(15),
+    marginLeft: GetOptimalWidth(15),
     ...commonStyle.elevatedShadow,
   },
   downArrow: {
@@ -78,7 +118,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   itemStyle: {
-    width: GetOptimalHieght(225),
+    width: GetOptimalHieght(100),
     fontSize: scaledFontSize(18),
     fontFamily: 'SEGOEUI',
   },

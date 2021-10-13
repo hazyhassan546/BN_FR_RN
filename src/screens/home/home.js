@@ -12,6 +12,7 @@ import NameListCard from '../../components/cards/nameListCard';
 import OptionsCard from '../../components/cards/optionsCard';
 import GenderOptions from '../../components/genderOptions';
 import HomeHeader from '../../components/homeHeader';
+import AlphabetPickerModal from '../../components/models/alphabetPicker';
 import OriginPicker from '../../components/models/originPicker';
 import ValuePickerModal from '../../components/models/valuePickerModal';
 import SearchBar from '../../components/searchBar';
@@ -63,18 +64,22 @@ export default class Home extends Component {
     this.props.getTrendingNames();
   };
 
+  resetStateRedux = () => {
+    this.props.setOrigin('');
+    this.props.setKeyword('');
+    this.props.setReligion('');
+    this.props.setAlphabet('');
+  };
+
   UNSAFE_componentWillMount() {
     this.props.resetState();
     this.props.getWorldTrendingNames();
-    this.props.setSearchType('');
-
     this._unsubscribe = this.props.navigation.addListener('focus', () => {
-      this.props.setSearchType('');
+      this.resetStateRedux();
     });
   }
 
-
-  componentWillUnmount(){
+  componentWillUnmount() {
     this._unsubscribe();
   }
 
@@ -85,10 +90,8 @@ export default class Home extends Component {
           value: 'Boy',
           id: 0,
         });
-        this.props.setKeyword('');
-        this.props.setAlphabet('');
+        this.resetStateRedux();
         this.props.setLoading(true);
-        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
@@ -100,10 +103,8 @@ export default class Home extends Component {
           value: 'Girl',
           id: 1,
         });
-        this.props.setKeyword('');
-        this.props.setAlphabet('');
+        this.resetStateRedux();
         this.props.setLoading(true);
-        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
@@ -114,40 +115,31 @@ export default class Home extends Component {
           value: '',
           id: 2,
         });
-        this.props.setKeyword('');
-        this.props.setAlphabet('');
+        this.resetStateRedux();
         this.props.setLoading(true);
-        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
         this.props.navigation.navigate('NameListing', {data: option.title});
         break;
       case 'Search Alphabetic':
-        this.props.setKeyword('');
-        this.props.setAlphabet('');
+        this.resetStateRedux();
         this.props.setLoading(true);
-        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
         this.props.navigation.navigate('ByAlphabets');
         break;
       case 'Search Religious':
-        this.props.setKeyword('');
-        this.props.setAlphabet('');
-        this.props.setOrigin('');
+        this.resetStateRedux();
         this.props.setLoading(true);
-        this.props.setSearchType('');
         setTimeout(() => {
           this.GetNames();
         }, 500);
         this.props.navigation.navigate('ByReligion');
         break;
       case 'Trending Names':
-        this.props.setKeyword('');
-        this.props.setAlphabet('');
-        this.props.setOrigin('');
+        this.resetStateRedux();
         this.props.setLoading(true);
         this.props.setSearchType('');
         setTimeout(() => {
@@ -156,6 +148,7 @@ export default class Home extends Component {
         this.props.navigation.navigate('Trending');
         break;
       case 'My Favorites':
+        this.resetStateRedux();
         this.props.navigation.navigate('Favorite');
       default:
         break;
@@ -216,20 +209,26 @@ export default class Home extends Component {
               }}>
               <GenderOptions {...this.props} />
               <View style={{flexDirection: 'row'}}>
-                <ValuePickerModal
-                  {...this.props}
-                  onPress={() => {
-                    this.props.navigation.navigate('ByReligion');
-                  }}
-                />
                 <OriginPicker
                   {...this.props}
-                  onPress={() => {
-                    // this.props.navigation.navigate('ByReligion');
+                  onSelect={() => {
+                    this.GetNames();
+                    this.props.navigation.navigate('NameListing', {
+                      data: 'By Origin',
+                    });
+                  }}
+                />
+                <AlphabetPickerModal
+                  {...this.props}
+                  onSelect={() => {
+                    this.GetNames();
+                    this.props.navigation.navigate('NameListing', {
+                      data: 'By Alphabet',
+                    });
                   }}
                 />
               </View>
-              <SearchBar {...this.props} />
+              <SearchBar onSelect={() => {}} {...this.props} />
             </View>
           }
           keyExtractor={item => item.title}

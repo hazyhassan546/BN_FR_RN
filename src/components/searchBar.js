@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Text, StyleSheet, View, TextInput, Keyboard} from 'react-native';
 import COLORS from '../common/colors';
 import {commonStyle} from '../common/styles';
+import Toast from 'react-native-toast-message';
+
 import {
   GetOptimalHieght,
   GetOptimalWidth,
@@ -18,24 +20,22 @@ export default class SearchBar extends Component {
   }
 
   submitForm = () => {
+    if (this.props?.namesData?.keyword == '') {
+      Toast.show({
+        type: 'error',
+        text1: 'Please type something to search',
+      });
+      return;
+    }
     let data = {
       keyword: this.props?.namesData?.keyword,
-      religion: this.props?.namesData?.religion,
+      religion: '',
       gender: this.props?.namesData?.gender,
       alphabet: '',
-      origin: this.props?.namesData?.origin,
+      origin: '',
     };
     this.props.getNames(data);
-    if (this.props?.namesData?.keyword !== '') {
-      // in case keyword is not empty set search type to name
-      this.props.setSearchType('Name');
-    } else if (this.props?.namesData?.origin !== '') {
-      this.props.setSearchType('Origin');
-    } else if (this.props?.namesData?.religion !== '') {
-      this.props.setSearchType('Religion');
-    } else {
-      this.props.setSearchType('');
-    }
+    this.props.onSelect();
     this.props.navigation.navigate('NameListing', {
       data: 'By Keyword',
     });
