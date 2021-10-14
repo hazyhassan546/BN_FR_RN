@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginBottom: GetOptimalHieght(20),
   },
   desc: {
-    fontSize: scaledFontSize(10),
+    fontSize: scaledFontSize(12),
     fontFamily:"SEGOEUI",
     color: COLORS.WHITE,
     marginBottom: GetOptimalHieght(20),

@@ -43,17 +43,6 @@ export default class NameListing extends Component {
     });
   };
 
-  GetNames = () => {
-    let data = {
-      keyword: this.props?.namesData?.keyword,
-      religion: this.props?.namesData?.religion,
-      gender: this.props?.namesData?.gender,
-      alphabet: this.props?.namesData?.alphabet,
-      origin: this.props?.namesData?.origin,
-    };
-    this.props.getNames(data);
-  };
-
   ListEmptyComponent = () => {
     return (
       <View
@@ -94,24 +83,16 @@ export default class NameListing extends Component {
           }}>
           <GenderOptions {...this.props} />
           <View style={{flexDirection: 'row'}}>
-            <OriginPicker
-              {...this.props}
-              onSelect={() => {
-                this.setTitle('By Origin');
-                this.GetNames();
-              }}
-            />
-            <AlphabetPickerModal
-              {...this.props}
-              onSelect={() => {
-                this.setTitle('By Alphabet');
-                this.GetNames();
-              }}
-            />
+            <OriginPicker {...this.props} />
+            <AlphabetPickerModal {...this.props} />
           </View>
           <SearchBar
             onSelect={() => {
-              this.setTitle('By Keyword');
+              if (this.props?.namesData?.keyword == '') {
+                this.setTitle('Search');
+              } else {
+                this.setTitle('By Keyword');
+              }
             }}
             {...this.props}
           />

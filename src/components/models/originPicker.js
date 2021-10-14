@@ -40,9 +40,6 @@ export default function OriginPicker(props) {
     }
     props.setOrigin(text);
     setVisible(false);
-    setTimeout(() => {
-      props.onSelect();
-    }, 500);
   };
 
   const showMenu = () => setVisible(true);

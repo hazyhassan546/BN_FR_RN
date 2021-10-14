@@ -52,7 +52,7 @@ export default class Home extends Component {
   GetNames = () => {
     let data = {
       keyword: this.props?.namesData?.keyword,
-      religion: this.props?.namesData?.religion,
+      religion: "",
       gender: this.props?.namesData?.gender,
       alphabet: this.props?.namesData?.alphabet,
       origin: this.props?.namesData?.origin,
@@ -75,7 +75,7 @@ export default class Home extends Component {
     this.props.resetState();
     this.props.getWorldTrendingNames();
     this._unsubscribe = this.props.navigation.addListener('focus', () => {
-      this.resetStateRedux();
+      this.props.setReligion('');
     });
   }
 
@@ -90,7 +90,6 @@ export default class Home extends Component {
           value: 'Boy',
           id: 0,
         });
-        this.resetStateRedux();
         this.props.setLoading(true);
         setTimeout(() => {
           this.GetNames();
@@ -103,7 +102,6 @@ export default class Home extends Component {
           value: 'Girl',
           id: 1,
         });
-        this.resetStateRedux();
         this.props.setLoading(true);
         setTimeout(() => {
           this.GetNames();
@@ -115,7 +113,6 @@ export default class Home extends Component {
           value: '',
           id: 2,
         });
-        this.resetStateRedux();
         this.props.setLoading(true);
         setTimeout(() => {
           this.GetNames();
@@ -123,32 +120,19 @@ export default class Home extends Component {
         this.props.navigation.navigate('NameListing', {data: option.title});
         break;
       case 'Search Alphabetic':
-        this.resetStateRedux();
-        this.props.setLoading(true);
-        setTimeout(() => {
-          this.GetNames();
-        }, 500);
         this.props.navigation.navigate('ByAlphabets');
         break;
       case 'Search Religious':
-        this.resetStateRedux();
-        this.props.setLoading(true);
-        setTimeout(() => {
-          this.GetNames();
-        }, 500);
         this.props.navigation.navigate('ByReligion');
         break;
       case 'Trending Names':
-        this.resetStateRedux();
         this.props.setLoading(true);
-        this.props.setSearchType('');
         setTimeout(() => {
           this.getTrendingNames();
         }, 500);
         this.props.navigation.navigate('Trending');
         break;
       case 'My Favorites':
-        this.resetStateRedux();
         this.props.navigation.navigate('Favorite');
       default:
         break;
@@ -211,21 +195,9 @@ export default class Home extends Component {
               <View style={{flexDirection: 'row'}}>
                 <OriginPicker
                   {...this.props}
-                  onSelect={() => {
-                    this.GetNames();
-                    this.props.navigation.navigate('NameListing', {
-                      data: 'By Origin',
-                    });
-                  }}
                 />
                 <AlphabetPickerModal
                   {...this.props}
-                  onSelect={() => {
-                    this.GetNames();
-                    this.props.navigation.navigate('NameListing', {
-                      data: 'By Alphabet',
-                    });
-                  }}
                 />
               </View>
               <SearchBar onSelect={() => {}} {...this.props} />

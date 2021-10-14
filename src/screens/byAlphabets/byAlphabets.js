@@ -130,6 +130,9 @@ export default class ByAlphabets extends Component {
       origin: '',
       alphabet: alphabet,
     };
+    this.props.setReligion("");
+    this.props.setOrigin('');
+    this.props.setKeyword('');
     this.props.setLoading(true);
     this.props.setAlphabet(alphabet);
     this.props.getNames(data);

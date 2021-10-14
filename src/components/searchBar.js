@@ -20,24 +20,17 @@ export default class SearchBar extends Component {
   }
 
   submitForm = () => {
-    if (this.props?.namesData?.keyword == '') {
-      Toast.show({
-        type: 'error',
-        text1: 'Please type something to search',
-      });
-      return;
-    }
     let data = {
       keyword: this.props?.namesData?.keyword,
       religion: '',
       gender: this.props?.namesData?.gender,
-      alphabet: '',
-      origin: '',
+      alphabet: this.props?.namesData?.alphabet,
+      origin: this.props?.namesData?.origin,
     };
     this.props.getNames(data);
     this.props.onSelect();
     this.props.navigation.navigate('NameListing', {
-      data: 'By Keyword',
+      data: this.props?.namesData?.keyword?'By Keyword':"Search",
     });
     Keyboard.dismiss();
   };

@@ -52,9 +52,6 @@ export default function AlphabetPickerModal(props) {
     }
     props.setAlphabet(text);
     setVisible(false);
-    setTimeout(() => {
-      props.onSelect();
-    }, 500);
   };
 
   const showMenu = () => setVisible(true);
