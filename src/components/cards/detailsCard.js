@@ -43,7 +43,7 @@ export default class DetailsCard extends Component {
     } else if (item.urdu_name == 'hebrew') {
       return 'Jewish';
     } else {
-      return "-";
+      return '-';
     }
   };
 
@@ -55,7 +55,9 @@ export default class DetailsCard extends Component {
     const aribic = data?.aribic ? data?.aribic : '-';
     const meaning = data?.meaning ? data?.meaning : '-';
     const gender = data?.gender ? data?.gender : '-';
-    const Pronunciation = data?.Pronunciation ? data?.Pronunciation?.replace(/<\/?[^>]+(>|$)/g, "") : '-';
+    const Pronunciation = data?.Pronunciation
+      ? data?.Pronunciation?.replace(/<\/?[^>]+(>|$)/g, '')
+      : '-';
     const numbers = data?.numbers ? data?.numbers : '-';
     const orign = data?.orign ? data?.orign : '-';
     const Rashi = data?.Rashi ? data?.Rashi : '-';
@@ -74,47 +76,66 @@ export default class DetailsCard extends Component {
             <Text style={styles.title}>{'Name'}</Text>
             <Text style={styles.desc}>{name}</Text>
 
-            {meaning && (
+            {meaning !== '-' && (
               <View style={styles.bottomArea}>
                 <Text style={styles.title}>{'Meaning'}</Text>
-                <Text style={styles.desc2}>{meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ' ').trim()}</Text>
+                <Text style={styles.desc2}>
+                  {meaning
+                    .replace(/[^a-zA-Z]/g, ' ')
+                    .replace(/\s+/g, ' ')
+                    .trim()}
+                </Text>
               </View>
             )}
 
-            <View style={styles.bottomArea}>
-              <Text style={styles.title}>{'Arabic'}</Text>
-              <Text style={styles.desc2}>{aribic}</Text>
-            </View>
+            {aribic !== '-' && (
+              <View style={styles.bottomArea}>
+                <Text style={styles.title}>{'Arabic'}</Text>
+                <Text style={styles.desc2}>{aribic}</Text>
+              </View>
+            )}
 
-            <View style={styles.bottomArea}>
-              <Text style={styles.title}>{'Gender'}</Text>
-              <Text style={styles.desc2}>{gender}</Text>
-            </View>
+            {gender !== '-' && (
+              <View style={styles.bottomArea}>
+                <Text style={styles.title}>{'Gender'}</Text>
+                <Text style={styles.desc2}>{gender}</Text>
+              </View>
+            )}
 
-            <View style={styles.bottomArea}>
-              <Text style={styles.title}>{'Religion'}</Text>
-              <Text style={styles.desc2}>{religion}</Text>
-            </View>
+            {religion !== '-' && (
+              <View style={styles.bottomArea}>
+                <Text style={styles.title}>{'Religion'}</Text>
+                <Text style={styles.desc2}>{religion}</Text>
+              </View>
+            )}
 
-            <View style={styles.bottomArea}>
-              <Text style={styles.title}>{'Pronunciation'}</Text>
-              <Text style={styles.desc2}>{Pronunciation}</Text>
-            </View>
+            {Pronunciation !== '-' && (
+              <View style={styles.bottomArea}>
+                <Text style={styles.title}>{'Pronunciation'}</Text>
+                <Text style={styles.desc2}>{Pronunciation}</Text>
+              </View>
+            )}
 
-            <View style={styles.bottomArea}>
-              <Text style={styles.title}>{'Lucky Numbers'}</Text>
-              <Text style={styles.desc2}>{numbers}</Text>
-            </View>
+            {numbers !== '-' && (
+              <View style={styles.bottomArea}>
+                <Text style={styles.title}>{'Lucky Numbers'}</Text>
+                <Text style={styles.desc2}>{numbers}</Text>
+              </View>
+            )}
 
-            <View style={styles.bottomArea}>
-              <Text style={styles.title}>{'Origin'}</Text>
-              <Text style={styles.desc2}>{orign}</Text>
-            </View>
+            {orign !== '-' && (
+              <View style={styles.bottomArea}>
+                <Text style={styles.title}>{'Origin'}</Text>
+                <Text style={styles.desc2}>{orign}</Text>
+              </View>
+            )}
 
-            <View style={styles.bottomArea}>
-              <Text style={styles.title}>{'Rashi'}</Text>
-              <Text style={styles.desc2}>{Rashi}</Text>
-            </View>
+            {Rashi !== '-' && (
+              <View style={styles.bottomArea}>
+                <Text style={styles.title}>{'Rashi'}</Text>
+                <Text style={styles.desc2}>{Rashi}</Text>
+              </View>
+            )}
           </View>
         </View>
         <View style={styles.iconArea}>
@@ -135,7 +156,13 @@ export default class DetailsCard extends Component {
             style={styles.button}
             onPress={() =>
               this.onShare(
-                'Name: ' + data?.name + '   Meaning: ' + data?.meaning.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim(),
+                'Name: ' +
+                  data?.name +
+                  '   Meaning: ' +
+                  data?.meaning
+                    .replace(/[^a-zA-Z]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim(),
               )
             }>
             <Icon
@@ -149,12 +176,31 @@ export default class DetailsCard extends Component {
             style={styles.button}
             onPress={() => {
               Clipboard.setString(
-                'Name: ' + data?.name.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim() + '   Meaning: ' + data?.meaning.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim(),
+                'Name: ' +
+                  data?.name
+                    .replace(/[^a-zA-Z]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim() +
+                  '   Meaning: ' +
+                  data?.meaning
+                    .replace(/[^a-zA-Z]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim(),
               );
               Toast.show({
                 type: 'success',
                 text1: 'Name is copied to clipboard',
-                text2: 'Name: ' + data?.name.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim() + '   Meaning: ' + data?.meaning.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim(),
+                text2:
+                  'Name: ' +
+                  data?.name
+                    .replace(/[^a-zA-Z]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim() +
+                  '   Meaning: ' +
+                  data?.meaning
+                    .replace(/[^a-zA-Z]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim(),
               });
             }}>
             <Icon
@@ -183,7 +229,7 @@ const styles = StyleSheet.create({
     marginBottom: GetOptimalHieght(0),
     width: GetOptimalWidth(120),
     fontSize: scaledFontSize(16),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     // color:"#454748",
     color: '#5AC5CB',
     fontWeight: '500',
@@ -191,7 +237,7 @@ const styles = StyleSheet.create({
   desc: {
     marginBottom: GetOptimalHieght(30),
     fontSize: scaledFontSize(32),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     //color: '#5AC5CB',
     color: '#454748',
     fontWeight: 'bold',
@@ -200,11 +246,12 @@ const styles = StyleSheet.create({
   desc2: {
     marginBottom: GetOptimalHieght(10),
     fontSize: scaledFontSize(18),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
     color: '#454748',
     fontWeight: 'normal',
     borderColor: 'black',
     width: GetOptimalWidth(170),
+    textAlign: 'left',
   },
   iconArea: {
     flexDirection: 'row',
@@ -245,7 +292,7 @@ const styles = StyleSheet.create({
   link: {
     color: COLORS.BLACK,
     fontSize: scaledFontSize(18),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
   bottomArea: {
     flex: 1,
