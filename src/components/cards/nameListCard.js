@@ -57,11 +57,16 @@ export default class NameListCard extends Component {
           styles.item,
           {
             backgroundColor: index % 2 === 0 ? COLORS.SKY_BLUE : COLORS.WHITE,
-           // backgroundColor:COLORS.WHITE,
+            // backgroundColor:COLORS.WHITE,
           },
         ]}>
         <View style={styles.nameArea}>
-          <Text style={styles.title}>{item.name.replace(/[^a-zA-Z]/g, '').replace(/\s+/g, ' ').trim()}</Text>
+          <Text style={styles.title}>
+            {item.name
+              .replace(/[^a-zA-Z]/g, '')
+              .replace(/\s+/g, ' ')
+              .trim()}
+          </Text>
           <TouchableOpacity
             style={[
               styles.button,
@@ -79,7 +84,13 @@ export default class NameListCard extends Component {
             style={styles.button}
             onPress={() =>
               this.onShare(
-                'Name: ' + item?.name + '   Meaning: ' + item?.meaning?.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ', ').trim(),
+                'Name: ' +
+                  item?.name +
+                  '   Meaning: ' +
+                  item?.meaning
+                    ?.replace(/[^a-zA-Z]/g, ' ')
+                    .replace(/\s+/g, ', ')
+                    .trim(),
               )
             }>
             <Icon
@@ -93,12 +104,25 @@ export default class NameListCard extends Component {
             style={styles.button}
             onPress={() => {
               Clipboard.setString(
-                'Name: ' + item.name + '   Meaning: ' + item.meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ', ').trim(),
+                'Name: ' +
+                  item.name +
+                  '   Meaning: ' +
+                  item.meaning
+                    .replace(/[^a-zA-Z]/g, ' ')
+                    .replace(/\s+/g, ', ')
+                    .trim(),
               );
               Toast.show({
                 type: 'success',
                 text1: 'Name is copied to clipboard',
-                text2: 'Name: ' + item.name + '   Meaning: ' + item.meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ', ').trim(),
+                text2:
+                  'Name: ' +
+                  item.name +
+                  '   Meaning: ' +
+                  item.meaning
+                    .replace(/[^a-zA-Z]/g, ' ')
+                    .replace(/\s+/g, ', ')
+                    .trim(),
               });
             }}>
             <Icon
@@ -109,9 +133,12 @@ export default class NameListCard extends Component {
             />
           </TouchableOpacity>
         </View>
-
+        <View style={styles.pinkDot}></View>
         <Text numberOfLines={2} style={styles.desc}>
-          {item.meaning.replace(/[^a-zA-Z]/g, ' ').replace(/\s+/g, ' ').trim()}
+          {item.meaning
+            .replace(/[^a-zA-Z]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim()}
         </Text>
         {this.getReligion()}
         <TouchableOpacity onPress={this.props.gotoDetails}>
@@ -122,30 +149,39 @@ export default class NameListCard extends Component {
   }
 }
 const styles = StyleSheet.create({
+  pinkDot: {
+    width: GetOptimalWidth(15),
+    height: GetOptimalWidth(15),
+    backgroundColor:"pink",
+    borderRadius: GetOptimalHieght(20),
+    position:"absolute",
+    right:GetOptimalWidth(5),
+    top:GetOptimalHieght(5)
+  },
   item: {
     backgroundColor: COLORS.SKY_BLUE,
     padding: GetOptimalHieght(20),
-    margin:GetOptimalHieght(15),
-    borderRadius:GetOptimalHieght(20),
+    margin: GetOptimalHieght(15),
+    borderRadius: GetOptimalHieght(20),
     ...commonStyle.elevatedShadow,
   },
   title: {
     fontSize: scaledFontSize(25),
     width: GetOptimalWidth(180),
     color: COLORS.BLACK,
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
   desc: {
     fontSize: scaledFontSize(18),
     width: GetOptimalWidth(260),
     color: COLORS.BLACK,
     marginBottom: 5,
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
   link: {
     color: '#1592E6',
     fontSize: scaledFontSize(16),
-    fontFamily:"SEGOEUI",
+    fontFamily: 'SEGOEUI',
   },
   nameArea: {
     flexDirection: 'row',
@@ -160,5 +196,7 @@ const styles = StyleSheet.create({
     ...commonStyle.elevatedShadow,
     borderRadius: GetOptimalHieght(20),
     marginHorizontal: GetOptimalWidth(5),
+    borderColor:"pink",
+    borderWidth:2,
   },
 });

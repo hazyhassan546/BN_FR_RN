@@ -28,6 +28,9 @@ import {
   VISITED_ALL_NAMES,
   RESET,
   SET_SEARCH_TYPE,
+  GET_ALL_ORIGINS,
+  GET_ALL_ORIGINS_SUCCESS,
+  GET_ALL_ORIGINS_ERROR,
 } from '../types/types';
 
 export const nameActionCreator = {
@@ -68,4 +71,8 @@ export const nameActionCreator = {
   resetState: createAction(RESET),
 
   setSearchType: createAction(SET_SEARCH_TYPE),
+
+  getAllOrigin: createAction(GET_ALL_ORIGINS),
+  getAllOriginSuccess: createAction(GET_ALL_ORIGINS_SUCCESS),
+  getAllOriginError: createAction(GET_ALL_ORIGINS_ERROR),
 };

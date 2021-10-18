@@ -28,6 +28,9 @@ import {
   VISITED_ALL_NAMES,
   RESET,
   SET_SEARCH_TYPE,
+  GET_ALL_ORIGINS,
+  GET_ALL_ORIGINS_SUCCESS,
+  GET_ALL_ORIGINS_ERROR,
 } from '../types/types';
 
 const defaultState = {
@@ -51,6 +54,8 @@ const defaultState = {
   WT_loading: false,
   newName: false,
   searchType: '',
+  allOrigins: [],
+  originLoading: false,
 };
 export default function nameReducer(state = defaultState, action = {}) {
   const {type, payload} = action;
@@ -192,7 +197,7 @@ export default function nameReducer(state = defaultState, action = {}) {
         origin: '',
         religion: '',
         alphabet: '',
-        gender: "",
+        gender: '',
         genderIndex: 2,
       };
     case CLEAR_KEYWORD:
@@ -266,6 +271,31 @@ export default function nameReducer(state = defaultState, action = {}) {
       return {
         ...state,
         searchType: payload,
+      };
+    }
+    case GET_ALL_ORIGINS: {
+      return {
+        ...state,
+        originLoading: true,
+        originSuccess: false,
+        error: '',
+      };
+    }
+    case GET_ALL_ORIGINS_SUCCESS: {
+      return {
+        ...state,
+        originLoading: false,
+        originSuccess: true,
+        error: '',
+        allOrigins: payload,
+      };
+    }
+    case GET_ALL_ORIGINS_ERROR: {
+      return {
+        ...state,
+        originLoading: false,
+        originSuccess: false,
+        error: payload,
       };
     }
     case RESET: {

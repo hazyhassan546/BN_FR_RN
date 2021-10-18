@@ -1,23 +1,34 @@
-import { all, take, call, put, fork } from "redux-saga/effects";
-import { nameActionCreator } from "../actions/nameActions";
-import { getNamesApi, getTrendingNamesApi, getWorldTrendingNamesApi } from "../Api/apiCalls";
-import { GET_NAMES, GET_RELATED_NAMES, GET_TRENDING_NAMES, GET_WORLD_TRENDING_NAMES } from "../types/types";
+import {all, take, call, put, fork} from 'redux-saga/effects';
+import {nameActionCreator} from '../actions/nameActions';
+import {
+  getAllOriginApi,
+  getNamesApi,
+  getTrendingNamesApi,
+  getWorldTrendingNamesApi,
+} from '../Api/apiCalls';
+import {
+  GET_ALL_ORIGINS,
+  GET_NAMES,
+  GET_RELATED_NAMES,
+  GET_TRENDING_NAMES,
+  GET_WORLD_TRENDING_NAMES,
+} from '../types/types';
 
 const alpha = Array.from(Array(26))?.map((e, i) => i + 65);
-var alphabet = alpha?.map((x) => {
-  return { title: String.fromCharCode(x).toLowerCase(), data: [] };
+var alphabet = alpha?.map(x => {
+  return {title: String.fromCharCode(x).toLowerCase(), data: []};
 });
 
-function* getNameSaga({ payload }) {
+function* getNameSaga({payload}) {
   try {
     const response = yield call(getNamesApi, payload);
-    alphabet = alpha?.map((x) => {
-      return { title: String.fromCharCode(x).toLowerCase(), data: [] };
+    alphabet = alpha?.map(x => {
+      return {title: String.fromCharCode(x).toLowerCase(), data: []};
     });
     if (response?.length > 0) {
       response?.map((item, index) => {
         const word = item.name.charAt(0).toLowerCase();
-        let alphabetsString = "abcdefghijklmnopqrstuvwxyz";
+        let alphabetsString = 'abcdefghijklmnopqrstuvwxyz';
         if (alphabetsString.indexOf(word) > -1) {
           alphabet[alphabetsString.indexOf(word)].data.push(item);
         }
@@ -37,16 +48,16 @@ function* getNameSaga({ payload }) {
   }
 }
 
-function* getRelatedNameSaga({ payload }) {
+function* getRelatedNameSaga({payload}) {
   try {
     const response = yield call(getNamesApi, payload);
-    alphabet = alpha?.map((x) => {
-      return { title: String.fromCharCode(x).toLowerCase(), data: [] };
+    alphabet = alpha?.map(x => {
+      return {title: String.fromCharCode(x).toLowerCase(), data: []};
     });
     if (response?.length > 0) {
       response?.map((item, index) => {
         const word = item.name.charAt(0).toLowerCase();
-        let alphabetsString = "abcdefghijklmnopqrstuvwxyz";
+        let alphabetsString = 'abcdefghijklmnopqrstuvwxyz';
         if (alphabetsString.indexOf(word) > -1) {
           alphabet[alphabetsString.indexOf(word)].data.push(item);
         }
@@ -66,9 +77,7 @@ function* getRelatedNameSaga({ payload }) {
   }
 }
 
-
-
-function* getWorldTrendingNameSaga({ payload }) {
+function* getWorldTrendingNameSaga({payload}) {
   try {
     const response = yield call(getWorldTrendingNamesApi, payload);
     yield put(nameActionCreator.getWorldTrendingNamesSuccess(response));
@@ -78,13 +87,23 @@ function* getWorldTrendingNameSaga({ payload }) {
   }
 }
 
-function* getTrendingNameSaga({ payload }) {
+function* getTrendingNameSaga({payload}) {
   try {
     const response = yield call(getTrendingNamesApi, payload);
     yield put(nameActionCreator.getTrendingNamesSuccess(response));
   } catch (err) {
     console.log(err);
     yield put(nameActionCreator.getTrendingNamesError(err));
+  }
+}
+
+function* getAllOriginSaga() {
+  try {
+    const response = yield call(getAllOriginApi);
+    yield put(nameActionCreator.getAllOriginSuccess(response));
+  } catch (err) {
+    console.log(err);
+    yield put(nameActionCreator.getAllOriginError(err));
   }
 }
 
@@ -109,6 +128,13 @@ function* getWorldTrendingNameWatchersSaga() {
   }
 }
 
+function* getAllOriginWatchersSaga() {
+  while (true) {
+    const action = yield take(GET_ALL_ORIGINS);
+    yield* getAllOriginSaga(action);
+  }
+}
+
 function* getRelatedNameWatchersSaga() {
   while (true) {
     const action = yield take(GET_RELATED_NAMES);
@@ -121,6 +147,7 @@ export default function* () {
     fork(getNamesWatchersSaga),
     fork(getTrendingNameWatchersSaga),
     fork(getRelatedNameWatchersSaga),
-    fork(getWorldTrendingNameWatchersSaga)
+    fork(getWorldTrendingNameWatchersSaga),
+    fork(getAllOriginWatchersSaga),
   ]);
 }

@@ -12,23 +12,6 @@ import images from '../../common/images';
 import Modal from 'react-native-modal';
 import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
 import {ScrollView} from 'react-native';
-const data = [
-  'None',
-  'Arabic',
-  'English',
-  'German',
-  'Italian',
-  'Russian',
-  'French',
-  'Greek',
-  'Spanish',
-  'Urdu',
-  'Indian',
-  'Persian',
-  'Chinese',
-  'Biblical',
-  'Sikh',
-];
 
 export default function OriginPicker(props) {
   const [visible, setVisible] = useState(false);
@@ -43,6 +26,7 @@ export default function OriginPicker(props) {
   };
 
   const showMenu = () => setVisible(true);
+  const data = ['None', ...props?.namesData?.allOrigins];
   return (
     <Menu
       visible={visible}
@@ -69,6 +53,7 @@ export default function OriginPicker(props) {
           height: 400,
         }}>
         {data.map((item, index) => {
+          if (item == '') return;
           return (
             <MenuItem
               key={index}
@@ -105,5 +90,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: scaledFontSize(18),
     fontFamily: 'SEGOEUI',
+    width: GetOptimalWidth(100),
   },
 });

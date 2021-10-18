@@ -5,7 +5,7 @@ import {TouchableOpacity} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {SectionList} from 'react-native';
 import {ActivityIndicator} from 'react-native';
-import {View, FlatList, ImageBackground, Alert} from 'react-native';
+import {View, FlatList, ImageBackground, Alert, Linking} from 'react-native';
 import COLORS from '../../common/colors';
 import images from '../../common/images';
 import NameListCard from '../../components/cards/nameListCard';
@@ -52,7 +52,7 @@ export default class Home extends Component {
   GetNames = () => {
     let data = {
       keyword: this.props?.namesData?.keyword,
-      religion: "",
+      religion: '',
       gender: this.props?.namesData?.gender,
       alphabet: this.props?.namesData?.alphabet,
       origin: this.props?.namesData?.origin,
@@ -74,6 +74,7 @@ export default class Home extends Component {
   UNSAFE_componentWillMount() {
     this.props.resetState();
     this.props.getWorldTrendingNames();
+    this.props.getAllOrigin();
     this._unsubscribe = this.props.navigation.addListener('focus', () => {
       this.props.setReligion('');
     });
@@ -169,15 +170,15 @@ export default class Home extends Component {
         }}
         resizeMode="cover">
         <HomeHeader
+          gotoFav={() => {
+            this.props.navigation.navigate('Favorite');
+          }}
           openDrawer={() => this.props.navigation.openDrawer()}
           gotoHome={() => {
             this.props.navigation.navigate('Home');
           }}
           like={() => {
-            Alert.alert(
-              'Baby Name Mobile Application',
-              'Thanks a lot to like Baby Name app successfully',
-            );
+            Linking.openURL('https://www.babynamemeaningz.com/');
           }}
           share={() => {
             alert('Share');
@@ -193,12 +194,8 @@ export default class Home extends Component {
               }}>
               <GenderOptions {...this.props} />
               <View style={{flexDirection: 'row'}}>
-                <OriginPicker
-                  {...this.props}
-                />
-                <AlphabetPickerModal
-                  {...this.props}
-                />
+                <OriginPicker {...this.props} />
+                <AlphabetPickerModal {...this.props} />
               </View>
               <SearchBar onSelect={() => {}} {...this.props} />
             </View>

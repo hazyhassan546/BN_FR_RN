@@ -22,3 +22,10 @@ export function getWorldTrendingNamesApi() {
     url: ENUMS.baseURL + ENUMS.worldTrendingNames,
   }).then((response) => response.data);
 }
+
+export function getAllOriginApi() {
+  return API({
+    method: "GET",
+    url: ENUMS.baseURL + ENUMS.getAllOrigin,
+  }).then((response) => response.data);
+}
