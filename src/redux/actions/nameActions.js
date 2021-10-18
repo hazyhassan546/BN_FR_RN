@@ -31,6 +31,9 @@ import {
   GET_ALL_ORIGINS,
   GET_ALL_ORIGINS_SUCCESS,
   GET_ALL_ORIGINS_ERROR,
+  GET_BLOGS,
+  GET_BLOGS_SUCCESS,
+  GET_BLOGS_ERROR,
 } from '../types/types';
 
 export const nameActionCreator = {
@@ -75,4 +78,8 @@ export const nameActionCreator = {
   getAllOrigin: createAction(GET_ALL_ORIGINS),
   getAllOriginSuccess: createAction(GET_ALL_ORIGINS_SUCCESS),
   getAllOriginError: createAction(GET_ALL_ORIGINS_ERROR),
+
+  getBlog: createAction(GET_BLOGS),
+  getBlogSuccess: createAction(GET_BLOGS_SUCCESS),
+  getBlogError: createAction(GET_BLOGS_ERROR),
 };

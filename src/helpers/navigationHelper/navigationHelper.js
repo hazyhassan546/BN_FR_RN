@@ -19,6 +19,7 @@ import WalkThrough from "../../screens/walkthrough";
 import Trending from "../../screens/trending";
 import SideMenu from "./sideMenu";
 import NameDetails from "../../screens/nameDetail";
+import Blogs from "../../screens/blogs/blogs";
 
 // here is our app screen stack
 const ApplicationStack = createNativeStackNavigator();
@@ -57,6 +58,12 @@ function AppStack() {
         headerMode="none"
         name="PrivacyPolicy"
         component={PrivacyPolicy}
+        options={{ headerShown: false }}
+      />
+      <ApplicationStack.Screen
+        headerMode="none"
+        name="Blogs"
+        component={Blogs}
         options={{ headerShown: false }}
       />
       <ApplicationStack.Screen

@@ -15,7 +15,7 @@ import {
   GetOptimalWidth,
   scaledFontSize,
 } from "../../helpers/commonHelpers/helpers";
-export default class Favorites extends Component {
+export default class PrivacyPolicy extends Component {
   constructor(props) {
     super(props);
     this.state = {

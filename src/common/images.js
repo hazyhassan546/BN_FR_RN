@@ -1,32 +1,33 @@
-const babyImage = require("../assets/babyboth.png");
-const sideMenuBackground = require("../assets/sidemenu.png");
-const privacyIcon = require("../assets/privacy.png");
-const homeIcon = require("../assets/homeIcon.png");
-const heartIcon = require("../assets/heartIcon.png");
-const phoneIcon = require("../assets/Phoneicon.png");
-const faceBook = require("../assets/facebook.png");
-const instagram = require("../assets/insta.png");
-const twitter = require("../assets/twitter.png");
-const muslim = require("../assets/muslims.png");
-const hindu = require("../assets/hindu.png");
-const jews = require("../assets/jews.png");
-const sikh = require("../assets/sikh.png");
-const christian = require("../assets/christian.png");
-const trend = require("../assets/trend.png");
-const boy = require("../assets/boy.png");
-const girl = require("../assets/girl.png");
-const book = require("../assets/book.png");
-const letters = require("../assets/letters.png");
-const both = require("../assets/both.png");
-const down = require("../assets/down.png");
-const home = require("../assets/Home.png");
-const slide1 = require("../assets/slide1.png");
-const slide2 = require("../assets/slide2.png");
-const slide3 = require("../assets/slide3.png");
-const missing = require("../assets/missing.png");
-const newName=require("../assets/newName.gif");
-const newNameNormal=require("../assets/newNameNormal.png");
-const pint=require("../assets/pint.png");
+const babyImage = require('../assets/babyboth.png');
+const sideMenuBackground = require('../assets/sidemenu.png');
+const privacyIcon = require('../assets/privacy.png');
+const homeIcon = require('../assets/homeIcon.png');
+const heartIcon = require('../assets/heartIcon.png');
+const phoneIcon = require('../assets/Phoneicon.png');
+const faceBook = require('../assets/facebook.png');
+const instagram = require('../assets/insta.png');
+const twitter = require('../assets/twitter.png');
+const muslim = require('../assets/muslims.png');
+const hindu = require('../assets/hindu.png');
+const jews = require('../assets/jews.png');
+const sikh = require('../assets/sikh.png');
+const christian = require('../assets/christian.png');
+const trend = require('../assets/trend.png');
+const boy = require('../assets/boy.png');
+const girl = require('../assets/girl.png');
+const book = require('../assets/book.png');
+const letters = require('../assets/letters.png');
+const both = require('../assets/both.png');
+const down = require('../assets/down.png');
+const home = require('../assets/Home.png');
+const slide1 = require('../assets/slide1.png');
+const slide2 = require('../assets/slide2.png');
+const slide3 = require('../assets/slide3.png');
+const missing = require('../assets/missing.png');
+const newName = require('../assets/newName.gif');
+const newNameNormal = require('../assets/newNameNormal.png');
+const pint = require('../assets/pint.png');
+const blogs = require('../assets/blogs.png');
 
 export default Images = {
   pint,
@@ -58,4 +59,5 @@ export default Images = {
   slide2,
   slide3,
   missing,
+  blogs,
 };

@@ -51,6 +51,13 @@ export default class SideMenu extends Component {
           image: images.privacyIcon,
           selected: false,
         },
+        {
+          id: 4,
+          title: "Top Posts",
+          key: "Blogs",
+          image: images.blogs,
+          selected: false,
+        },
       ],
     };
   }

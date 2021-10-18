@@ -29,3 +29,10 @@ export function getAllOriginApi() {
     url: ENUMS.baseURL + ENUMS.getAllOrigin,
   }).then((response) => response.data);
 }
+
+export function getBlogsApi() {
+  return API({
+    method: "GET",
+    url: ENUMS.baseURL + ENUMS.getLatestBlogs,
+  }).then((response) => response.data);
+}

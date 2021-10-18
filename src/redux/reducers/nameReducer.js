@@ -31,6 +31,9 @@ import {
   GET_ALL_ORIGINS,
   GET_ALL_ORIGINS_SUCCESS,
   GET_ALL_ORIGINS_ERROR,
+  GET_BLOGS,
+  GET_BLOGS_SUCCESS,
+  GET_BLOGS_ERROR,
 } from '../types/types';
 
 const defaultState = {
@@ -56,6 +59,7 @@ const defaultState = {
   searchType: '',
   allOrigins: [],
   originLoading: false,
+  blogs:[]
 };
 export default function nameReducer(state = defaultState, action = {}) {
   const {type, payload} = action;
@@ -295,6 +299,32 @@ export default function nameReducer(state = defaultState, action = {}) {
         ...state,
         originLoading: false,
         originSuccess: false,
+        error: payload,
+      };
+    }
+
+    case GET_BLOGS: {
+      return {
+        ...state,
+        loading: true,
+        blogSuccess: false,
+        error: '',
+      };
+    }
+    case GET_BLOGS_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        blogSuccess: true,
+        error: '',
+        blogs: payload,
+      };
+    }
+    case GET_BLOGS_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        blogSuccess: false,
         error: payload,
       };
     }

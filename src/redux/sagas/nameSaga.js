@@ -2,12 +2,14 @@ import {all, take, call, put, fork} from 'redux-saga/effects';
 import {nameActionCreator} from '../actions/nameActions';
 import {
   getAllOriginApi,
+  getBlogsApi,
   getNamesApi,
   getTrendingNamesApi,
   getWorldTrendingNamesApi,
 } from '../Api/apiCalls';
 import {
   GET_ALL_ORIGINS,
+  GET_BLOGS,
   GET_NAMES,
   GET_RELATED_NAMES,
   GET_TRENDING_NAMES,
@@ -106,6 +108,17 @@ function* getAllOriginSaga() {
     yield put(nameActionCreator.getAllOriginError(err));
   }
 }
+function* getBlogsSaga() {
+  try {
+    const response = yield call(getBlogsApi);
+    yield put(nameActionCreator.getBlogSuccess(response));
+  } catch (err) {
+    console.log(err);
+    yield put(nameActionCreator.getBlogError(err));
+  }
+}
+
+
 
 function* getNamesWatchersSaga() {
   while (true) {
@@ -142,6 +155,13 @@ function* getRelatedNameWatchersSaga() {
   }
 }
 
+function* getBLogWatchersSaga() {
+  while (true) {
+    const action = yield take(GET_BLOGS);
+    yield* getBlogsSaga(action);
+  }
+}
+
 export default function* () {
   yield all([
     fork(getNamesWatchersSaga),
@@ -149,5 +169,6 @@ export default function* () {
     fork(getRelatedNameWatchersSaga),
     fork(getWorldTrendingNameWatchersSaga),
     fork(getAllOriginWatchersSaga),
+    fork(getBLogWatchersSaga)
   ]);
 }
