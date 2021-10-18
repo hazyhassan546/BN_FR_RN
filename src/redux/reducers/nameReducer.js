@@ -163,7 +163,7 @@ export default function nameReducer(state = defaultState, action = {}) {
         getNameError: true,
         error: payload,
       };
-      //  Filter Flow Starts from here
+    //  Filter Flow Starts from here
     case SET_GENDER:
       return {
         ...state,
@@ -185,13 +185,15 @@ export default function nameReducer(state = defaultState, action = {}) {
         ...state,
         religion: '',
       };
-    case SET_KEYWORD:    // this is final   => on keyword typing all states would be clear.
+    case SET_KEYWORD: // this is final   => on keyword typing all states would be clear.
       return {
         ...state,
         keyword: payload,
         origin: '',
         religion: '',
         alphabet: '',
+        gender: "",
+        genderIndex: 2,
       };
     case CLEAR_KEYWORD:
       return {
