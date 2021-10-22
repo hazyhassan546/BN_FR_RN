@@ -1,0 +1,1 @@
+export const Ad_Key="ca-pub-5761434959715947";

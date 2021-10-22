@@ -28,8 +28,13 @@ const newName = require('../assets/newName.gif');
 const newNameNormal = require('../assets/newNameNormal.png');
 const pint = require('../assets/pint.png');
 const blogs = require('../assets/blogs.png');
+const blogIcon=require('../assets/blog.png');
+const heart=require('../assets/lover.png');
+
 
 export default Images = {
+  heart,
+  blogIcon,
   pint,
   newNameNormal,
   newName,

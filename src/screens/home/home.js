@@ -35,9 +35,13 @@ const typesData = [
     title: 'Name of Both',
     image: images.both,
   },
+  // {
+  //   title: 'Search Alphabetic',
+  //   image: images.letters,
+  // },
   {
-    title: 'Search Alphabetic',
-    image: images.letters,
+    title: 'Top Posts',
+    image: images.blogIcon,
   },
   {
     title: 'Search Religious',
@@ -46,6 +50,10 @@ const typesData = [
   {
     title: 'Trending Names',
     image: images.trend,
+  },
+  {
+    title: 'My Favorite',
+    image: images.heart,
   },
 ];
 export default class Home extends Component {
@@ -133,8 +141,12 @@ export default class Home extends Component {
         }, 500);
         this.props.navigation.navigate('Trending');
         break;
-      case 'My Favorites':
+      case 'Top Posts':
+        this.props.navigation.navigate('Blogs');
+        break;
+      case 'My Favorite':
         this.props.navigation.navigate('Favorite');
+        break;
       default:
         break;
     }

@@ -35,6 +35,10 @@ const data = [
 ];
 export default class ByReligion extends Component {
   GetNames = religion => {
+    let genderInfo={
+      value: this.props?.namesData?.gender,
+      id: this.props?.namesData?.genderIndex,
+    }
     let data = {
       keyword: '',
       religion: religion,
@@ -47,6 +51,7 @@ export default class ByReligion extends Component {
     this.props.setOrigin('');
     this.props.setKeyword('');
     this.props.setAlphabet('');
+    this.props.setGender(genderInfo);
     setTimeout(() => {
       this.props.getNames(data);
       this.props.navigation.navigate('NameListing', {data: 'By Religion'});
