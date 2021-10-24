@@ -11,6 +11,7 @@ import {
 import {Icon} from 'react-native-elements';
 import Clipboard from '@react-native-community/clipboard';
 import {AdMobBanner} from 'react-native-admob';
+import {Platform} from 'react-native';
 
 export default class DetailsCard extends Component {
   onShare = async message => {
@@ -219,7 +220,11 @@ export default class DetailsCard extends Component {
           }}>
           <AdMobBanner
             adSize="largeBanner"
-            adUnitID="ca-app-pub-8758033824132830/7175910809"
+            adUnitID={
+              Platform.OS == 'android'
+                ? 'ca-app-pub-8758033824132830/7175910809'
+                : 'ca-app-pub-8758033824132830/4738585198'
+            }
             didFailToReceiveAdWithError={e => console.log(e)}
             onAdFailedToLoad={e => console.log(e)}
           />

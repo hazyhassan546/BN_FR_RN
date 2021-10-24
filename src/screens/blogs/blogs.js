@@ -27,6 +27,7 @@ import {
   scaledFontSize,
 } from '../../helpers/commonHelpers/helpers';
 import {nameConnect} from '../../redux/connectors/nameConnect';
+import {Platform} from 'react-native';
 
 class Blogs extends Component {
   constructor(props) {
@@ -89,7 +90,11 @@ class Blogs extends Component {
                       }}>
                       <AdMobBanner
                         adSize="largeBanner"
-                        adUnitID="ca-app-pub-8758033824132830/2259653718"
+                        adUnitID={
+                          Platform.OS == 'android'
+                            ? 'ca-app-pub-8758033824132830/2259653718'
+                            : 'ca-app-pub-8758033824132830/8841481734'
+                        }
                         didFailToReceiveAdWithError={e => console.log(e)}
                         onAdFailedToLoad={e => console.log(e)}
                       />

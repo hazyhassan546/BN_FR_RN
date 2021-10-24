@@ -23,6 +23,7 @@ import {
   GetOptimalWidth,
   scaledFontSize,
 } from '../../helpers/commonHelpers/helpers';
+import {Platform} from 'react-native';
 
 const typesData = [
   {
@@ -243,7 +244,11 @@ export default class Home extends Component {
                 }}>
                 <AdMobBanner
                   adSize="largeBanner"
-                  adUnitID="ca-app-pub-8758033824132830/4208333667"
+                  adUnitID={
+                    Platform.OS == 'android'
+                      ? 'ca-app-pub-8758033824132830/4208333667'
+                      : 'ca-app-pub-8758033824132830/4276933653'
+                  }
                   didFailToReceiveAdWithError={this.onFailToRecieveAd}
                   onAdFailedToLoad={this.onFailToRecieveAd}
                 />
