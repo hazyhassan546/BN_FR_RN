@@ -16,6 +16,8 @@ import AlphabetPickerModal from '../../components/models/alphabetPicker';
 import OriginPicker from '../../components/models/originPicker';
 import ValuePickerModal from '../../components/models/valuePickerModal';
 import SearchBar from '../../components/searchBar';
+import {AdMobBanner} from 'react-native-admob';
+
 import {
   GetOptimalHieght,
   GetOptimalWidth,
@@ -172,6 +174,8 @@ export default class Home extends Component {
     );
   };
 
+  onFailToRecieveAd = error => console.log(error);
+
   render() {
     return (
       <ImageBackground
@@ -196,7 +200,6 @@ export default class Home extends Component {
             alert('Share');
           }}
         />
-
         <FlatList
           ListHeaderComponent={
             <View
@@ -234,6 +237,17 @@ export default class Home extends Component {
                 marginTop: 50,
                 flex: 1,
               }}>
+              <View
+                style={{
+                  alignItems: 'center',
+                }}>
+                <AdMobBanner
+                  adSize="largeBanner"
+                  adUnitID="ca-app-pub-8758033824132830/4208333667"
+                  didFailToReceiveAdWithError={this.onFailToRecieveAd}
+                  onAdFailedToLoad={this.onFailToRecieveAd}
+                />
+              </View>
               {this.props?.namesData?.WT_loading === true ? (
                 <View
                   style={{

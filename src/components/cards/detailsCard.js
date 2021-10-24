@@ -10,6 +10,8 @@ import {
 } from '../../helpers/commonHelpers/helpers';
 import {Icon} from 'react-native-elements';
 import Clipboard from '@react-native-community/clipboard';
+import {AdMobBanner} from 'react-native-admob';
+
 export default class DetailsCard extends Component {
   onShare = async message => {
     try {
@@ -210,6 +212,17 @@ export default class DetailsCard extends Component {
               color={COLORS.SIDE_MENU_TEXT}
             />
           </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            alignItems: 'center',
+          }}>
+          <AdMobBanner
+            adSize="largeBanner"
+            adUnitID="ca-app-pub-8758033824132830/7175910809"
+            didFailToReceiveAdWithError={e => console.log(e)}
+            onAdFailedToLoad={e => console.log(e)}
+          />
         </View>
         <View style={styles.seeMore} onPress={this.props.seeRelatedNames}>
           <Text style={styles.link}>Similar Names</Text>

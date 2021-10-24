@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {ActivityIndicator} from 'react-native';
 import {Linking} from 'react-native';
 import {TouchableOpacity} from 'react-native';
+import {AdMobBanner} from 'react-native-admob';
+
 import {
   Text,
   StyleSheet,
@@ -79,35 +81,50 @@ class Blogs extends Component {
             }
             renderItem={({item, index}) => {
               return (
-                <TouchableOpacity
-                  onPress={() => {
-                    Linking.openURL(
-                      'https://www.babynamemeaningz.com/' +
-                        item?.blog_id +
-                        '-' +
-                        item?.post_link,
-                    );
-                  }}
-                  style={{
-                    margin: GetOptimalHieght(20),
-                    padding: GetOptimalHieght(20),
-                    minHeight: GetOptimalHieght(100),
-                    flex: 1,
-                    justifyContent: 'center',
-                    borderColor: 'pink',
-                    borderRadius: GetOptimalHieght(20),
-                    backgroundColor: COLORS.SKY_BLUE,
-                    ...commonStyle.elevatedShadow,
-                  }}>
-                  <Text
+                <View>
+                  {index == 4 && (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                      }}>
+                      <AdMobBanner
+                        adSize="largeBanner"
+                        adUnitID="ca-app-pub-8758033824132830/2259653718"
+                        didFailToReceiveAdWithError={e => console.log(e)}
+                        onAdFailedToLoad={e => console.log(e)}
+                      />
+                    </View>
+                  )}
+                  <TouchableOpacity
+                    onPress={() => {
+                      Linking.openURL(
+                        'https://www.babynamemeaningz.com/' +
+                          item?.blog_id +
+                          '-' +
+                          item?.post_link,
+                      );
+                    }}
                     style={{
-                      fontSize: 20,
-                      fontFamily: 'SEGOEUI',
-                      color: COLORS.BLACK,
+                      margin: GetOptimalHieght(20),
+                      padding: GetOptimalHieght(20),
+                      minHeight: GetOptimalHieght(100),
+                      flex: 1,
+                      justifyContent: 'center',
+                      borderColor: 'pink',
+                      borderRadius: GetOptimalHieght(20),
+                      backgroundColor: COLORS.SKY_BLUE,
+                      ...commonStyle.elevatedShadow,
                     }}>
-                    {item?.post_title}
-                  </Text>
-                </TouchableOpacity>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontFamily: 'SEGOEUI',
+                        color: COLORS.BLACK,
+                      }}>
+                      {item?.post_title}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               );
             }}
           />
